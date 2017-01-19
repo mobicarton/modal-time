@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import mobi.carton.library.CartonActivity;
+import mobi.carton.modaltime.maze.MazeActivity;
 
 public class MainActivity extends CartonActivity {
 
@@ -19,5 +20,9 @@ public class MainActivity extends CartonActivity {
             startActivity(intent);
             finish();
         }
+
+        Intent intent = new Intent(this, MazeActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
