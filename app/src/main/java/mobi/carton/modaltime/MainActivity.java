@@ -12,7 +12,12 @@ public class MainActivity extends CartonActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Intent intent = new Intent(this, ConfigActivity.class);
-        startActivity(intent);
+        boolean configDone = getIntent().getBooleanExtra(ConfigActivity.EXTRA_CONFIG_DONE, false);
+
+        if (!configDone) {
+            Intent intent = new Intent(this, ConfigActivity.class);
+            startActivity(intent);
+            finish();
+        }
     }
 }
