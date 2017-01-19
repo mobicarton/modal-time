@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context="mobi.carton.modaltime.ConfigActivity">
+
+
+    <EditText
+        android:id="@+id/editTextName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:textSize="22sp"
+        android:inputType="text"
+        android:hint="@string/hintName"/>
+
+
+    <TextView
+        android:id="@+id/textViewInteraction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/editTextName"
+        android:text="@string/textInteraction"/>
+
+    <TextView
+        style="@style/textViewConfigOrder"
+        android:id="@+id/textViewVoice"
+        android:layout_below="@id/textViewInteraction"
+        android:text="@string/textVoice"
+        android:labelFor="@+id/editTextVoice"/>
+
+    <EditText
+        style="@style/editTextConfigOrder"
+        android:id="@+id/editTextVoice"
+        android:layout_below="@+id/textViewInteraction"/>
+
+
+    <TextView
+        style="@style/textViewConfigOrder"
+        android:id="@+id/textViewHead"
+        android:layout_below="@+id/textViewVoice"
+        android:text="@string/textHead"
+        android:labelFor="@+id/editTextHead"/>
+
+    <EditText
+        style="@style/editTextConfigOrder"
+        android:id="@+id/editTextHead"
+        android:layout_below="@+id/textViewVoice"/>
+
+
+    <TextView
+        style="@style/textViewConfigOrder"
+        android:id="@+id/textViewFinger"
+        android:layout_below="@+id/textViewHead"
+        android:text="@string/textFinger"
+        android:labelFor="@+id/editTextFinger"/>
+
+    <EditText
+        style="@style/editTextConfigOrder"
+        android:id="@+id/editTextFinger"
+        android:layout_below="@+id/textViewHead"/>
+
+
+    <TextView
+        style="@style/textViewConfigOrder"
+        android:id="@+id/textViewWatch"
+        android:layout_below="@+id/textViewFinger"
+        android:text="@string/textWatch"
+        android:labelFor="@+id/editTextWatch"/>
+
+    <EditText
+        style="@style/editTextConfigOrder"
+        android:id="@+id/editTextWatch"
+        android:layout_below="@+id/textViewFinger"/>
+
+
+    <Button
+        android:id="@+id/buttonValidate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/buttonValidate"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

@@ -1,4 +1,23 @@
 <resources>
     <string name="app_name">Modal Time</string>
     <string name="app_description">Learn and measure how speed you are with different kind of interaction.</string>
+
+
+
+    <!--
+    UI
+    -->
+
+
+    <string name="hintName">name</string>
+
+    <string name="textInteraction">Choose order of interactions (between 1 and 4)</string>
+
+    <string name="textVoice">Voice Control</string>
+    <string name="textHead">Head Gesture Recognition</string>
+    <string name="textFinger">Finger Touch Gesture</string>
+    <string name="textWatch">SmartWatch (ControlWear)</string>
+
+    <string name="buttonValidate">Validate</string>
+
 </resources>

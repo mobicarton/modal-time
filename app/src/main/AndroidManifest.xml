@@ -21,6 +21,11 @@
                 <category android:name="mobi.carton.intent.category.COMPATIBLE"/>
             </intent-filter>
         </activity>
+
+
+        <activity
+            android:name=".ConfigActivity">
+        </activity>
     </application>
 
 </manifest>
