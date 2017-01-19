@@ -20,4 +20,8 @@
 
     <string name="buttonValidate">Validate</string>
 
+
+    <string name="textErrorValues">Error: some values are out of range, must be between 1 and 4</string>
+    <string name="textErrorUnique">Error: some values are identical, must be different</string>
+
 </resources>
