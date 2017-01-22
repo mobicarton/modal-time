@@ -4,7 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="mobi.carton.modaltime.maze.MazeActivity">
+    android:background="@color/colorBackground"
+    android:padding="16dp"
+    tools:context="mobi.carton.modaltime.maze.MazeActivity"
+    tools:ignore="RtlHardcoded">
 
 
     <GridView
@@ -14,6 +17,56 @@
         android:verticalSpacing="4dp"
         android:horizontalSpacing="4dp"
         android:numColumns="4"
-        android:stretchMode="columnWidth"/>
+        android:stretchMode="columnWidth"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="12dp"/>
+
+
+    <ImageView
+        android:id="@+id/imageViewTiming"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_toRightOf="@+id/gridViewMaze"
+        android:layout_alignTop="@+id/gridViewMaze"
+        android:layout_marginRight="4dp"
+        android:layout_marginTop="4dp"
+        android:src="@drawable/ic_action_time"
+        android:contentDescription="@string/contentDescriptionTime"/>
+
+
+    <TextView
+        android:id="@+id/textViewTiming"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/imageViewTiming"
+        android:layout_alignTop="@+id/gridViewMaze"
+        android:textSize="@dimen/font_large"
+        android:textColor="@android:color/white"/>
+
+
+    <TextView
+        android:id="@+id/textViewInteraction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewTiming"
+        android:layout_toRightOf="@+id/gridViewMaze"
+        android:textSize="@dimen/font_title"
+        android:textColor="@android:color/white"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="8dp"
+        android:maxLines="1"
+        android:text="@string/textFinger"/>
+
+    <TextView
+        android:id="@+id/textViewInstruction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textViewInteraction"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_toRightOf="@+id/gridViewMaze"
+        android:textSize="@dimen/font_normal"
+        android:textColor="@android:color/white"
+        android:text="@string/textInstructionMaze"/>
 
 </RelativeLayout>

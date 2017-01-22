@@ -25,4 +25,10 @@
     <string name="textErrorValues">Error: some values are out of range, must be between 1 and 4</string>
     <string name="textErrorUnique">Error: some values are identical, must be different</string>
 
+
+    <!-- Maze -->
+
+    <string name="contentDescriptionTime">Timing Icon</string>
+    <string name="textInstructionMaze">Start at 10 and move to 16 by passing through 7, 1, 14</string>
+
 </resources>
