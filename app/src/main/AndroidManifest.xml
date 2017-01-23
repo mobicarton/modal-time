@@ -32,6 +32,13 @@
             android:name=".maze.MazeActivity"
             android:screenOrientation="landscape">
         </activity>
+
+
+        <activity
+            android:name=".origami.OrigamiActivity"
+            android:screenOrientation="landscape">
+        </activity>
+
     </application>
 
 </manifest>

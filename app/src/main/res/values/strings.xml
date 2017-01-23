@@ -1,13 +1,15 @@
 <resources>
+
     <string name="app_name">Modal Time</string>
     <string name="app_description">Learn and measure how speed you are with different kind of interaction.</string>
-
 
 
     <!--
     UI
     -->
 
+
+    <!-- Config -->
 
     <string name="hintName">name</string>
 
@@ -20,7 +22,6 @@
 
     <string name="buttonValidate">Validate</string>
 
-
     <string name="textErrorName">Error: name must be at least 3 characters length</string>
     <string name="textErrorValues">Error: some values are out of range, must be between 1 and 4</string>
     <string name="textErrorUnique">Error: some values are identical, must be different</string>
@@ -30,5 +31,10 @@
 
     <string name="contentDescriptionTime">Timing Icon</string>
     <string name="textInstructionMaze">Start at 10 and move to 16 by passing through 7, 1, 14</string>
+
+
+    <!-- Origami -->
+
+    <string name="contentDescriptionStep">Origami diagram (one step)</string>
 
 </resources>
