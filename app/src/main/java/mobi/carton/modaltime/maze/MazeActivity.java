@@ -5,18 +5,20 @@ import android.os.Bundle;
 import android.widget.GridView;
 
 import mobi.carton.library.CartonActivity;
+import mobi.carton.library.HeadRecognition;
 import mobi.carton.modaltime.R;
 
-public class MazeActivity extends CartonActivity {
+public class MazeActivity extends CartonActivity
+        implements
+        HeadRecognition.OnHeadGestureListener {
 
 
-
-    private GridView gridViewMaze;
     private MazeAdapter mAdapter;
-
-
     private int[] mMazeArray;
     private int currentPosition;
+
+
+    private HeadRecognition mHeadRecognition;
 
 
     private void initMazeArray() {
@@ -29,6 +31,9 @@ public class MazeActivity extends CartonActivity {
         mMazeArray[7] = MazeAdapter.STATE_POINT_BEFORE;
         mMazeArray[0] = MazeAdapter.STATE_POINT_BEFORE;
         mMazeArray[13] = MazeAdapter.STATE_POINT_BEFORE;
+
+        currentPosition = 10;
+        mMazeArray[currentPosition] += 1;
     }
 
 
@@ -37,6 +42,34 @@ public class MazeActivity extends CartonActivity {
         mMazeArray[newPosition] += 1;
         currentPosition = newPosition;
         mAdapter.notifyDataSetChanged();
+    }
+
+
+    private void goRight() {
+        if ((currentPosition+1) % 4 > 0) {
+            setPosition(currentPosition + 1);
+        }
+    }
+
+
+    private void goLeft() {
+        if (currentPosition % 4 > 0) {
+            setPosition(currentPosition - 1);
+        }
+    }
+
+
+    private void goUp() {
+        if (currentPosition > 3) {
+            setPosition(currentPosition - 4);
+        }
+    }
+
+
+    private void goDown() {
+        if (currentPosition < 12) {
+            setPosition(currentPosition + 4);
+        }
     }
 
 
@@ -50,16 +83,74 @@ public class MazeActivity extends CartonActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maze);
 
-        gridViewMaze = (GridView) findViewById(R.id.gridViewMaze);
+        GridView gridViewMaze = (GridView) findViewById(R.id.gridViewMaze);
 
+        /*
+        Maze init
+         */
         mMazeArray = new int[16];
         initMazeArray();
-
-        currentPosition = 10;
-        mMazeArray[currentPosition] += 1;
-
         mAdapter = new MazeAdapter(this, mMazeArray);
-
         gridViewMaze.setAdapter(mAdapter);
+
+        /*
+        Interaction
+         */
+        mHeadRecognition = new HeadRecognition(this);
+        mHeadRecognition.setOnHeadGestureListener(this);
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mHeadRecognition.start();
+    }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mHeadRecognition.stop();
+    }
+
+
+    /*
+    IMPLEMENTS
+     */
+
+
+    // HeadRecognition.OnHeadGestureListener
+    @Override
+    public void onTilt(int direction) {
+        switch (direction) {
+            case HeadRecognition.TILT_LEFT:
+                goLeft();
+                break;
+            case HeadRecognition.TILT_RIGHT:
+                goRight();
+                break;
+        }
+    }
+
+
+    // HeadRecognition.OnHeadGestureListener
+    @Override
+    public void onNod(int direction) {
+        switch (direction) {
+            case HeadRecognition.NOD_DOWN:
+                goDown();
+                break;
+            case HeadRecognition.NOD_UP:
+                goUp();
+                break;
+        }
+    }
+
+
+    // HeadRecognition.OnHeadGestureListener
+    @Override
+    public void onShake() {
+
     }
 }
