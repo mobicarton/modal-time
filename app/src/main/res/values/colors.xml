@@ -5,4 +5,12 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="colorBackground">#424242</color>
+
+
+    <color name="colorMazeStart">#FFE082</color>
+    <color name="colorMazeActual">#64B5F6</color>
+    <color name="colorMazePointBefore">#F48FB1</color>
+    <color name="colorMazePointAfter">#CE93D8</color>
+    <color name="colorMazeEnd">#66BB6A</color>
+    <color name="colorMazeNeutral">#FFF</color>
 </resources>
