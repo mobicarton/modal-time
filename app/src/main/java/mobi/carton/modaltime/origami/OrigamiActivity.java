@@ -4,12 +4,14 @@ package mobi.carton.modaltime.origami;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import mobi.carton.csr.ContinuousSpeechRecognition;
 import mobi.carton.library.CartonActivity;
 import mobi.carton.library.CartonViewPager;
 import mobi.carton.library.HeadRecognition;
@@ -20,12 +22,9 @@ public class OrigamiActivity extends CartonActivity
         implements
         HeadRecognition.OnHeadGestureListener,
         ViewPager.OnPageChangeListener,
-        CartonViewPager.OnScrollListener {
-        //ContinuousSpeechRecognition.OnTextListener {
+        CartonViewPager.OnScrollListener,
+        ContinuousSpeechRecognition.OnTextListener {
 
-
-    public final static String EXTRA_NAME = "extra_name";
-    public final static String EXTRA_NB_STEPS = "extra_nb_steps";
 
 
     private CartonViewPager mViewPager;
@@ -33,9 +32,24 @@ public class OrigamiActivity extends CartonActivity
     private TextView mTextViewStepPosition;
     private ImageView mImageViewStepPosition;
 
-    private HeadRecognition mHeadRecognition;
 
-    //private ContinuousSpeechRecognition mContinuousSpeechRecognition;
+    private HeadRecognition mHeadRecognition;
+    private ContinuousSpeechRecognition mContinuousSpeechRecognition;
+
+
+    private void actionDirection(int direction) {
+        switch (direction) {
+            case HeadRecognition.NOD_DOWN:
+                if (mViewPager.getCurrentItem() == mNbSteps)
+                    onBackPressed();
+                break;
+        }
+    }
+
+
+    /*
+    LIFECYCLE
+     */
 
 
     @Override
@@ -77,8 +91,8 @@ public class OrigamiActivity extends CartonActivity
         mHeadRecognition = new HeadRecognition(this);
         mHeadRecognition.setOnHeadGestureListener(this);
 
-        //mContinuousSpeechRecognition = new ContinuousSpeechRecognition(this);
-        //mContinuousSpeechRecognition.setOnTextListener(this);
+        mContinuousSpeechRecognition = new ContinuousSpeechRecognition(this);
+        mContinuousSpeechRecognition.setOnTextListener(this);
     }
 
 
@@ -86,7 +100,7 @@ public class OrigamiActivity extends CartonActivity
     protected void onResume() {
         super.onResume();
         mHeadRecognition.start();
-        //mContinuousSpeechRecognition.start();
+        mContinuousSpeechRecognition.start();
     }
 
 
@@ -94,17 +108,23 @@ public class OrigamiActivity extends CartonActivity
     protected void onPause() {
         super.onPause();
         mHeadRecognition.stop();
-        //mContinuousSpeechRecognition.stop();
+        mContinuousSpeechRecognition.stop();
     }
 
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        //mContinuousSpeechRecognition.destroy();
+        mContinuousSpeechRecognition.destroy();
     }
 
 
+    /*
+    IMPLEMENTS
+     */
+
+
+    // HeadRecognition.OnHeadGestureListener
     @Override
     public void onTilt(int direction) {
         switch (direction) {
@@ -118,24 +138,28 @@ public class OrigamiActivity extends CartonActivity
     }
 
 
+    // HeadRecognition.OnHeadGestureListener
     @Override
     public void onNod(int direction) {
         actionDirection(direction);
     }
 
 
+    // HeadRecognition.OnHeadGestureListener
     @Override
     public void onShake() {
 
     }
 
 
+    // ViewPager.OnPageChangeListener
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
     }
 
 
+    // ViewPager.OnPageChangeListener
     @Override
     public void onPageSelected(int position) {
         if (position < mNbSteps) {
@@ -143,36 +167,26 @@ public class OrigamiActivity extends CartonActivity
             mImageViewStepPosition.setImageDrawable(null);
         } else {
             mTextViewStepPosition.setText("");
-            //mImageViewStepPosition.setImageResource(R.drawable.ic_action_accept);
+            mImageViewStepPosition.setImageResource(R.drawable.ic_action_accept);
         }
     }
 
 
+    // ViewPager.OnPageChangeListener
     @Override
     public void onPageScrollStateChanged(int state) {
 
     }
 
 
+    // CartonViewPager.OnScrollListener
     @Override
     public void onScroll(int direction) {
         actionDirection(direction);
     }
 
-    private void actionDirection(int direction) {
-        switch (direction) {
-            case HeadRecognition.NOD_DOWN:
-                if (mViewPager.getCurrentItem() == mNbSteps)
-                    onBackPressed();
-                break;
-            case HeadRecognition.NOD_UP:
-                onBackPressed();
-                break;
-        }
-    }
 
-
-    /*
+    // ContinuousSpeechRecognition.OnTextListener
     @Override
     public void onTextMatched(ArrayList<String> matchedText) {
         Log.d("onTextMatched", matchedText.toString());
@@ -195,9 +209,9 @@ public class OrigamiActivity extends CartonActivity
     }
 
 
+    // ContinuousSpeechRecognition.OnTextListener
     @Override
     public void onError(int error) {
 
     }
-    */
 }
