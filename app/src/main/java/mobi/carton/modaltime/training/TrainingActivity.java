@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import mobi.carton.library.CartonActivity;
@@ -101,11 +100,17 @@ public class TrainingActivity extends CartonActivity
                 break;
             case "head":
                 LayoutInflater layoutInflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-                View rootIncludedview = layoutInflater.inflate(R.layout.include_head_vertical, frameLayoutHelp, false);
-                frameLayoutHelp.addView(rootIncludedview);
+                View rootIncludedView;
 
-                mTextViewTracking = (TextView) rootIncludedview.findViewById(R.id.textViewTracking);
-                mNeedleView = (NeedleView) rootIncludedview.findViewById(R.id.needleView);
+                if (mDirection < 2) { // which means left/right (horizontal/tilting)
+                    rootIncludedView = layoutInflater.inflate(R.layout.include_head_horizontal, frameLayoutHelp, false);
+                } else {
+                    rootIncludedView = layoutInflater.inflate(R.layout.include_head_vertical, frameLayoutHelp, false);
+                }
+                frameLayoutHelp.addView(rootIncludedView);
+
+                mTextViewTracking = (TextView) rootIncludedView.findViewById(R.id.textViewTracking);
+                mNeedleView = (NeedleView) rootIncludedView.findViewById(R.id.needleView);
 
                 mHeadRecognition.setOnHeadGestureListener(this);
                 mHeadRecognition.setOnHeadTrackingListener(this);
@@ -192,12 +197,12 @@ public class TrainingActivity extends CartonActivity
     // HeadRecognition.OnHeadTrackingListener
     @Override
     public void onDirectionChanged(int azimuth, int pitch, int roll) {
-        //if (isTitl) {
-            //mNeedleView.setAngle(pitch * -1 + 90);
-            //mTextViewTracking.setText(String.format("%d", (int) Math.sqrt(pitch * pitch)));
-        //} else {
+        if (mDirection < 2) {
+            mNeedleView.setAngle(pitch * -1 + 90);
+            mTextViewTracking.setText(String.format("%d", (int) Math.sqrt(pitch * pitch)));
+        } else {
             mNeedleView.setAngle(roll + 90);
             mTextViewTracking.setText(String.format("%d", (int) Math.sqrt(roll * roll)));
-        //}
+        }
     }
 }
