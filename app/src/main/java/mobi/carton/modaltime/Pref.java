@@ -79,7 +79,7 @@ public class Pref {
      */
     public static int getOrderVoice(final Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        return sharedPreferences.getInt(PREF_ORDER_VOICE, 1);
+        return sharedPreferences.getInt(PREF_ORDER_VOICE, 4);
     }
 
 
@@ -123,7 +123,7 @@ public class Pref {
      */
     public static int getOrderFinger(final Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        return sharedPreferences.getInt(PREF_ORDER_FINGER, 3);
+        return sharedPreferences.getInt(PREF_ORDER_FINGER, 1);
     }
 
 
@@ -145,6 +145,6 @@ public class Pref {
      */
     public static int getOrderWatch(final Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        return sharedPreferences.getInt(PREF_ORDER_WATCH, 4);
+        return sharedPreferences.getInt(PREF_ORDER_WATCH, 3);
     }
 }
