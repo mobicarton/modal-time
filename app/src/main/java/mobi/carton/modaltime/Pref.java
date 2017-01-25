@@ -38,6 +38,9 @@ public class Pref {
     private static final String PREF_ORDER_WATCH = "pref_order_watch";
 
 
+    private static final String PREF_CURRENT_ACTIVITY = "pref_current_activity";
+    private static final String PREF_CURRENT_INTERACTION = "pref_current_interaction";
+
 
     /**
      * Set the user's name (String)
@@ -146,5 +149,29 @@ public class Pref {
     public static int getOrderWatch(final Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         return sharedPreferences.getInt(PREF_ORDER_WATCH, 3);
+    }
+
+
+    public static void setCurrentInteraction(final Context context, final int interaction) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        sharedPreferences.edit().putInt(PREF_CURRENT_INTERACTION, interaction).apply();
+    }
+
+
+    public static int getCurrentInteraction(final Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return sharedPreferences.getInt(PREF_CURRENT_INTERACTION, 1);
+    }
+
+
+    public static void setCurrentActivity(final Context context, final int interaction) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        sharedPreferences.edit().putInt(PREF_CURRENT_ACTIVITY, interaction).apply();
+    }
+
+
+    public static int getCurrentActivity(final Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return sharedPreferences.getInt(PREF_CURRENT_ACTIVITY, 1);
     }
 }
