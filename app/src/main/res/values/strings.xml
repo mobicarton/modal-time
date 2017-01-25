@@ -45,6 +45,21 @@
     <string name="training_finger_up">Use your finger to swipe FORWARD on screens (3 times).</string>
     <string name="training_finger_down">Use your finger to swipe BACKWARD on screens (3 times).</string>
 
+    <string name="training_head_right">Make a little tilt RIGHT with you head (3 times).</string>
+    <string name="training_head_left">Make a little tilt LEFT with you head (3 times).</string>
+    <string name="training_head_up">Make a little nod UP with you head (3 times).</string>
+    <string name="training_head_down">Make a little nod DOWN with you head (3 times).</string>
+
+    <string name="training_watch_right">Use your finger to swipe RIGHT on the smartwatch (3 times).</string>
+    <string name="training_watch_left">Use your finger to swipe LEFT on the smartwatch (3 times).</string>
+    <string name="training_watch_up">Use your finger to swipe FORWARD on the smartwatch (3 times).</string>
+    <string name="training_watch_down">Use your finger to swipe BACKWARD on the smartwatch (3 times).</string>
+
+    <string name="training_voice_right">You can use your voice too, say "Next" (3 times).</string>
+    <string name="training_voice_left">You can use your voice too, say "Previous" (3 times).</string>
+    <string name="training_voice_up">You can use your voice too, say "Ok" (3 times).</string>
+    <string name="training_voice_down">You can use your voice too, say "Cancel" (3 times).</string>
+
 
     <string name="training_all">Last training, do any kind of interaction you want to do 3 times each direction</string>
 
