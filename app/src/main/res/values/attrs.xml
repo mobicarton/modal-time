@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="NeedleView">
+
+        <attr name="orientationVertical" format="boolean"/>
+        <attr name="needleWidth" format="dimension"/>
+        <attr name="needleColor" format="color"/>
+        <attr name="angle" format="integer"/>
+
+    </declare-styleable>
+
+</resources>
