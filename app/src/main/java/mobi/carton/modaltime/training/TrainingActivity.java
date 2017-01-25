@@ -9,6 +9,8 @@ import android.widget.TextView;
 import mobi.carton.library.CartonActivity;
 import mobi.carton.library.CartonSdk;
 import mobi.carton.library.HeadRecognition;
+import mobi.carton.modaltime.MainActivity;
+import mobi.carton.modaltime.Pref;
 import mobi.carton.modaltime.R;
 import mobi.carton.modaltime.TouchView;
 
@@ -111,11 +113,23 @@ public class TrainingActivity extends CartonActivity
         if (mDirection == direction) {
             mCount -= 1;
 
-            if (mCount == 0) {
-                Intent intent = new Intent(this, TrainingActivity.class);
-                intent.putExtra(EXTRA_DIRECTION, mDirection + 1);
-                intent.putExtra(EXTRA_INTERACTION, mInteraction);
-                startActivity(intent);
+            if (mCount == 0) { // if user did 3 times the action
+                if (mDirection >= 3) {
+                    if (Pref.getCurrentInteraction(getApplicationContext()) == 2) { // should be 4 with voice and smart watch
+                        Pref.incrementCurrentActivity(getApplicationContext(), 1); // if user did with all kind of interaction we increment current activity
+                        Pref.setCurrentInteraction(getApplicationContext(), 0); // and we reset to 0 interaction
+                    } else {
+                        Pref.incrementCurrentInteraction(getApplicationContext(), 1); // if user just did it in all direction we increment interaction
+                    }
+                    Intent intent = new Intent(this, MainActivity.class);
+                    intent.putExtra(MainActivity.EXTRA_NOCONFIG, true);
+                    startActivity(intent);
+                } else { // if not of the above, we just increment the direction
+                    Intent intent = new Intent(this, TrainingActivity.class);
+                    intent.putExtra(EXTRA_DIRECTION, mDirection + 1);
+                    intent.putExtra(EXTRA_INTERACTION, mInteraction);
+                    startActivity(intent);
+                }
                 finish();
             } else {
                 mTextViewCount.setText(Integer.toString(mCount));

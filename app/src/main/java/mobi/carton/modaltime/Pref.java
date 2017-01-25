@@ -158,6 +158,14 @@ public class Pref {
     }
 
 
+    public static void incrementCurrentInteraction(final Context context, final int increment) {
+        int currentInteraction = getCurrentInteraction(context);
+        currentInteraction += increment;
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        sharedPreferences.edit().putInt(PREF_CURRENT_INTERACTION, currentInteraction).apply();
+    }
+
+
     public static int getCurrentInteraction(final Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         return sharedPreferences.getInt(PREF_CURRENT_INTERACTION, 1);
@@ -167,6 +175,14 @@ public class Pref {
     public static void setCurrentActivity(final Context context, final int interaction) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         sharedPreferences.edit().putInt(PREF_CURRENT_ACTIVITY, interaction).apply();
+    }
+
+
+    public static void incrementCurrentActivity(final Context context, final int increment) {
+        int currentActivity = getCurrentActivity(context);
+        currentActivity += increment;
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        sharedPreferences.edit().putInt(PREF_CURRENT_ACTIVITY, currentActivity).apply();
     }
 
 
