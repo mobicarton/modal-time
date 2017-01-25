@@ -121,9 +121,9 @@ public class ConfigActivity extends AppCompatActivity
 
                 Pref.setUserName(getApplicationContext(), editTextName.getText().toString());
                 Pref.setOrderVoice(getApplicationContext(), Integer.parseInt(editTextVoice.getText().toString()));
-                Pref.setOrderVoice(getApplicationContext(), Integer.parseInt(editTextHead.getText().toString()));
-                Pref.setOrderVoice(getApplicationContext(), Integer.parseInt(editTextFinger.getText().toString()));
-                Pref.setOrderVoice(getApplicationContext(), Integer.parseInt(editTextWatch.getText().toString()));
+                Pref.setOrderHead(getApplicationContext(), Integer.parseInt(editTextHead.getText().toString()));
+                Pref.setOrderFinger(getApplicationContext(), Integer.parseInt(editTextFinger.getText().toString()));
+                Pref.setOrderWatch(getApplicationContext(), Integer.parseInt(editTextWatch.getText().toString()));
 
                 Intent intent = new Intent(this, MainActivity.class);
                 intent.putExtra(EXTRA_CONFIG_DONE, true);
