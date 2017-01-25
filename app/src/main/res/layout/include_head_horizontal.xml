@@ -1,0 +1,44 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical">
+
+
+    <TextView
+        android:id="@+id/textViewTracking"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/font_large"
+        android:layout_marginBottom="6dp"
+        android:layout_centerHorizontal="true"/>
+
+
+    <mobi.carton.modaltime.NeedleView
+        android:id="@+id/needleView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/textViewTracking"
+        android:layout_above="@+id/viewSpace"
+        app:needleColor="@android:color/holo_blue_bright"
+        app:needleWidth="1dp"/>
+
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:layout_below="@id/textViewTracking"
+        android:layout_above="@+id/viewSpace"
+        android:layout_centerHorizontal="true"
+        android:background="@android:color/white"/>
+
+
+    <ImageView
+        android:id="@+id/viewSpace"
+        android:layout_width="match_parent"
+        android:layout_height="68dp"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

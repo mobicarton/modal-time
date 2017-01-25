@@ -21,19 +21,20 @@
         android:background="@drawable/border">
 
 
-        <ImageView
-            android:id="@+id/imageViewTraining"
+        <FrameLayout
+            android:id="@+id/relativeLayoutHelp"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"/>
+            android:layout_centerVertical="true">
+        </FrameLayout>
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
-            android:layout_toLeftOf="@+id/imageViewTraining"
+            android:layout_toLeftOf="@+id/relativeLayoutHelp"
             android:orientation="vertical"
             android:gravity="center">
 
