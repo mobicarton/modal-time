@@ -34,6 +34,12 @@
 
 
         <activity
+            android:name=".training.TrainingActivity"
+            android:screenOrientation="landscape">
+        </activity>
+
+
+        <activity
             android:name=".maze.MazeActivity"
             android:screenOrientation="landscape">
         </activity>

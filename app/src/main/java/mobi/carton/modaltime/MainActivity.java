@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import mobi.carton.library.CartonActivity;
 import mobi.carton.library.CartonPrefs;
-import mobi.carton.modaltime.origami.OrigamiActivity;
+import mobi.carton.modaltime.training.TrainingActivity;
 
 public class MainActivity extends CartonActivity {
 
@@ -14,7 +14,7 @@ public class MainActivity extends CartonActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        CartonPrefs.setWithoutCarton(getApplicationContext(), false);
+        CartonPrefs.setWithoutCarton(getApplicationContext(), true);
 
         boolean configDone = getIntent().getBooleanExtra(ConfigActivity.EXTRA_CONFIG_DONE, false);
 
@@ -24,7 +24,7 @@ public class MainActivity extends CartonActivity {
             finish();
         }
 
-        Intent intent = new Intent(this, OrigamiActivity.class);
+        Intent intent = new Intent(this, TrainingActivity.class);
         startActivity(intent);
         finish();
     }

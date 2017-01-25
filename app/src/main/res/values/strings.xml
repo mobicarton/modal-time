@@ -37,4 +37,15 @@
 
     <string name="contentDescriptionStep">Origami diagram (one step)</string>
 
+
+    <!-- Training -->
+
+    <string name="training_finger_right">Use your finger to swipe RIGHT on screens (3 times).</string>
+    <string name="training_finger_left">Use your finger to swipe LEFT on screens (3 times).</string>
+    <string name="training_finger_up">Use your finger to swipe FORWARD on screens (3 times).</string>
+    <string name="training_finger_down">Use your finger to swipe BACKWARD on screens (3 times).</string>
+
+
+    <string name="training_all">Last training, do any kind of interaction you want to do 3 times each direction</string>
+
 </resources>
