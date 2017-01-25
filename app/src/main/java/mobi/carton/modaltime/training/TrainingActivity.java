@@ -1,6 +1,7 @@
 package mobi.carton.modaltime.training;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,6 +16,9 @@ public class TrainingActivity extends CartonActivity
         implements
         TouchView.OnFingerTouchGestureListener,
         HeadRecognition.OnHeadGestureListener {
+
+
+    private static final String EXTRA_DIRECTION = "extra_direction";
 
 
     private int mDirection;
@@ -32,11 +36,32 @@ public class TrainingActivity extends CartonActivity
         setContentView(R.layout.activity_training);
 
         ImageView imageView = (ImageView) findViewById(R.id.imageViewTraining);
-        TextView textView = (TextView) findViewById(R.id.textViewTraining);
-
         imageView.setImageResource(R.drawable.finger_interaction);
-        textView.setText(getString(R.string.training_finger_right));
-        mDirection = CartonSdk.RIGHT;
+
+        Intent intent = getIntent();
+        mDirection = intent.getIntExtra(TrainingActivity.EXTRA_DIRECTION, 0);
+
+        String direction = "";
+        switch (mDirection) {
+            case CartonSdk.RIGHT:
+                direction = "right";
+                break;
+            case CartonSdk.LEFT:
+                direction = "left";
+                break;
+            case CartonSdk.UP:
+                direction = "up";
+                break;
+            case CartonSdk.DOWN:
+                direction = "down";
+                break;
+        }
+
+        int resourceId = getResources().getIdentifier("training_finger_" + direction, "string", getPackageName());
+
+        TextView textView = (TextView) findViewById(R.id.textViewTraining);
+        textView.setText(getString(resourceId));
+
 
         mCount = 3;
         mTextViewCount = (TextView) findViewById(R.id.textViewCount);
@@ -69,7 +94,10 @@ public class TrainingActivity extends CartonActivity
             mCount -= 1;
 
             if (mCount == 0) {
-
+                Intent intent = new Intent(this, TrainingActivity.class);
+                intent.putExtra(EXTRA_DIRECTION, mDirection + 1);
+                startActivity(intent);
+                finish();
             } else {
                 mTextViewCount.setText(Integer.toString(mCount));
             }
