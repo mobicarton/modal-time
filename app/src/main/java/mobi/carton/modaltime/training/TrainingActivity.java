@@ -18,6 +18,8 @@ public class TrainingActivity extends CartonActivity
         HeadRecognition.OnHeadGestureListener {
 
 
+    public static final String EXTRA_INTERACTION = "extra_interaction";
+
     private static final String EXTRA_DIRECTION = "extra_direction";
 
 
@@ -25,6 +27,9 @@ public class TrainingActivity extends CartonActivity
 
     private TextView mTextViewCount;
     private int mCount;
+
+
+    private String mInteraction;
 
 
     private HeadRecognition mHeadRecognition;
@@ -35,6 +40,13 @@ public class TrainingActivity extends CartonActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_training);
 
+        mCount = 3;
+        mTextViewCount = (TextView) findViewById(R.id.textViewCount);
+        mTextViewCount.setText(Integer.toString(mCount));
+
+        /*
+        DIRECTION INIT
+         */
         ImageView imageView = (ImageView) findViewById(R.id.imageViewTraining);
         imageView.setImageResource(R.drawable.finger_interaction);
 
@@ -57,21 +69,27 @@ public class TrainingActivity extends CartonActivity
                 break;
         }
 
-        int resourceId = getResources().getIdentifier("training_finger_" + direction, "string", getPackageName());
-
         TextView textView = (TextView) findViewById(R.id.textViewTraining);
+
+        /*
+        INTERACTION INIT
+         */
+
+        mInteraction = intent.getStringExtra(TrainingActivity.EXTRA_INTERACTION);
+        int resourceId = getResources().getIdentifier("training_" + mInteraction + "_" + direction, "string", getPackageName());
         textView.setText(getString(resourceId));
 
-
-        mCount = 3;
-        mTextViewCount = (TextView) findViewById(R.id.textViewCount);
-        mTextViewCount.setText(Integer.toString(mCount));
-
         TouchView touchView = (TouchView) findViewById(R.id.touchView);
-        touchView.setOnFingerTouchGestureListener(this);
-
         mHeadRecognition = new HeadRecognition(this);
-        mHeadRecognition.setOnHeadGestureListener(this);
+
+        switch (mInteraction) {
+            case "finger":
+                touchView.setOnFingerTouchGestureListener(this);
+                break;
+            case "head":
+                mHeadRecognition.setOnHeadGestureListener(this);
+                break;
+        }
     }
 
 
@@ -96,6 +114,7 @@ public class TrainingActivity extends CartonActivity
             if (mCount == 0) {
                 Intent intent = new Intent(this, TrainingActivity.class);
                 intent.putExtra(EXTRA_DIRECTION, mDirection + 1);
+                intent.putExtra(EXTRA_INTERACTION, mInteraction);
                 startActivity(intent);
                 finish();
             } else {

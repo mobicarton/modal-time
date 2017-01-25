@@ -1,5 +1,6 @@
 package mobi.carton.modaltime;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -12,9 +13,6 @@ import android.widget.Toast;
 public class ConfigActivity extends AppCompatActivity
         implements
         View.OnClickListener {
-
-
-    public static final String EXTRA_CONFIG_DONE = "extra_config_done";
 
 
     private EditText editTextName;
@@ -119,14 +117,19 @@ public class ConfigActivity extends AppCompatActivity
                     return;
                 }
 
-                Pref.setUserName(getApplicationContext(), editTextName.getText().toString());
-                Pref.setOrderVoice(getApplicationContext(), Integer.parseInt(editTextVoice.getText().toString()));
-                Pref.setOrderHead(getApplicationContext(), Integer.parseInt(editTextHead.getText().toString()));
-                Pref.setOrderFinger(getApplicationContext(), Integer.parseInt(editTextFinger.getText().toString()));
-                Pref.setOrderWatch(getApplicationContext(), Integer.parseInt(editTextWatch.getText().toString()));
+                Context context = getApplicationContext();
+
+                Pref.setUserName(context, editTextName.getText().toString());
+                Pref.setOrderVoice(context, Integer.parseInt(editTextVoice.getText().toString()));
+                Pref.setOrderHead(context, Integer.parseInt(editTextHead.getText().toString()));
+                Pref.setOrderFinger(context, Integer.parseInt(editTextFinger.getText().toString()));
+                Pref.setOrderWatch(context, Integer.parseInt(editTextWatch.getText().toString()));
+
+                Pref.setCurrentActivity(context, 1);
+                Pref.setCurrentInteraction(context, 1);
 
                 Intent intent = new Intent(this, MainActivity.class);
-                intent.putExtra(EXTRA_CONFIG_DONE, true);
+                intent.putExtra(MainActivity.EXTRA_NOCONFIG, true);
                 startActivity(intent);
                 finish();
                 break;

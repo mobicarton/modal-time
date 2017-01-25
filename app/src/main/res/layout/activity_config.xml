@@ -15,7 +15,8 @@
         android:layout_marginBottom="32dp"
         android:textSize="22sp"
         android:inputType="text"
-        android:hint="@string/hintName"/>
+        android:hint="@string/hintName"
+        android:text="mako"/>
 
 
     <TextView
@@ -35,7 +36,8 @@
     <EditText
         style="@style/editTextConfigOrder"
         android:id="@+id/editTextVoice"
-        android:layout_below="@+id/textViewInteraction"/>
+        android:layout_below="@+id/textViewInteraction"
+        android:text="4"/>
 
 
     <TextView
@@ -48,7 +50,8 @@
     <EditText
         style="@style/editTextConfigOrder"
         android:id="@+id/editTextHead"
-        android:layout_below="@+id/textViewVoice"/>
+        android:layout_below="@+id/textViewVoice"
+        android:text="2"/>
 
 
     <TextView
@@ -61,7 +64,8 @@
     <EditText
         style="@style/editTextConfigOrder"
         android:id="@+id/editTextFinger"
-        android:layout_below="@+id/textViewHead"/>
+        android:layout_below="@+id/textViewHead"
+        android:text="1"/>
 
 
     <TextView
@@ -74,7 +78,8 @@
     <EditText
         style="@style/editTextConfigOrder"
         android:id="@+id/editTextWatch"
-        android:layout_below="@+id/textViewFinger"/>
+        android:layout_below="@+id/textViewFinger"
+        android:text="3"/>
 
 
     <Button
