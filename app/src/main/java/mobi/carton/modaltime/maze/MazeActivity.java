@@ -5,12 +5,15 @@ import android.os.Bundle;
 import android.widget.GridView;
 
 import mobi.carton.library.CartonActivity;
+import mobi.carton.library.CartonSdk;
 import mobi.carton.library.HeadRecognition;
 import mobi.carton.modaltime.R;
+import mobi.carton.modaltime.TouchView;
 
 public class MazeActivity extends CartonActivity
         implements
-        HeadRecognition.OnHeadGestureListener {
+        HeadRecognition.OnHeadGestureListener,
+        TouchView.OnFingerTouchGestureListener {
 
 
     private MazeAdapter mAdapter;
@@ -98,6 +101,9 @@ public class MazeActivity extends CartonActivity
          */
         mHeadRecognition = new HeadRecognition(this);
         mHeadRecognition.setOnHeadGestureListener(this);
+
+        TouchView touchView = (TouchView) findViewById(R.id.touchView);
+        touchView.setOnFingerTouchGestureListener(this);
     }
 
 
@@ -152,5 +158,27 @@ public class MazeActivity extends CartonActivity
     @Override
     public void onShake() {
 
+    }
+
+
+    // TouchView.OnFingerTouchGestureListener
+    @Override
+    public void onSwipe(int direction) {
+        switch (direction) {
+            case CartonSdk.RIGHT:
+                goRight();
+                break;
+            case CartonSdk.LEFT:
+                goLeft();
+                break;
+            case CartonSdk.UP:
+                goUp();
+                break;
+            case CartonSdk.DOWN:
+                goDown();
+                break;
+            default:
+                break;
+        }
     }
 }
