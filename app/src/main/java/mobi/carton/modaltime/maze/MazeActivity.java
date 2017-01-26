@@ -7,6 +7,7 @@ import android.widget.GridView;
 import mobi.carton.library.CartonActivity;
 import mobi.carton.library.CartonSdk;
 import mobi.carton.library.HeadRecognition;
+import mobi.carton.modaltime.CentiChronometer;
 import mobi.carton.modaltime.R;
 import mobi.carton.modaltime.TouchView;
 
@@ -19,6 +20,9 @@ public class MazeActivity extends CartonActivity
     private MazeAdapter mAdapter;
     private int[] mMazeArray;
     private int currentPosition;
+
+
+    private CentiChronometer mChronometer;
 
 
     private HeadRecognition mHeadRecognition;
@@ -40,9 +44,41 @@ public class MazeActivity extends CartonActivity
     }
 
 
+    private boolean checkMazeEnd() {
+        for (int i = 0; i < 16; i++) {
+            if (mMazeArray[i] == MazeAdapter.STATE_POINT_BEFORE)
+                return false;
+        }
+        return true;
+    }
+
+
     private void setPosition(int newPosition) {
         mMazeArray[currentPosition] -= 1;
+
+        if (mMazeArray[currentPosition] == MazeAdapter.STATE_START) {
+            mChronometer.start();
+        }
+
+        if (mMazeArray[newPosition] == MazeAdapter.STATE_END) {
+            if (checkMazeEnd()) {
+                mChronometer.stop();
+            }
+        }
+
         mMazeArray[newPosition] += 1;
+
+        if (mMazeArray[newPosition] == MazeAdapter.STATE_START + 1) {
+            mChronometer.stop();
+            mChronometer.reset();
+            initMazeArray();
+        }
+
+        if (mMazeArray[currentPosition] == MazeAdapter.STATE_POINT_BEFORE) {
+            mMazeArray[currentPosition] = MazeAdapter.STATE_POINT_AFTER;
+        }
+
+
         currentPosition = newPosition;
         mAdapter.notifyDataSetChanged();
     }
@@ -95,6 +131,11 @@ public class MazeActivity extends CartonActivity
         initMazeArray();
         mAdapter = new MazeAdapter(this, mMazeArray);
         gridViewMaze.setAdapter(mAdapter);
+
+        /*
+        Timing init
+         */
+        mChronometer = (CentiChronometer) findViewById(R.id.chronometer);
 
         /*
         Interaction

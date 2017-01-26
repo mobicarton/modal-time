@@ -22,7 +22,7 @@ public class MazeAdapter extends BaseAdapter {
     public static final int STATE_START = 10;
     public static final int STATE_END = 20;
     public static final int STATE_POINT_BEFORE = 30;
-    private static final int STATE_POINT_AFTER = 40;
+    public static final int STATE_POINT_AFTER = 40;
 
 
     private final Context mContext;
