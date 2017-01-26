@@ -1,15 +1,22 @@
 package mobi.carton.modaltime.maze;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.GridView;
+import android.widget.TextView;
+
+import java.util.Locale;
 
 import mobi.carton.library.CartonActivity;
 import mobi.carton.library.CartonSdk;
 import mobi.carton.library.HeadRecognition;
 import mobi.carton.modaltime.CentiChronometer;
+import mobi.carton.modaltime.MainActivity;
+import mobi.carton.modaltime.Pref;
 import mobi.carton.modaltime.R;
 import mobi.carton.modaltime.TouchView;
+import mobi.carton.modaltime.training.TrainingActivity;
 
 public class MazeActivity extends CartonActivity
         implements
@@ -23,6 +30,8 @@ public class MazeActivity extends CartonActivity
 
 
     private CentiChronometer mChronometer;
+    private TextView mTextViewTrial;
+    private float mTrialTiming;
 
 
     private HeadRecognition mHeadRecognition;
@@ -63,6 +72,25 @@ public class MazeActivity extends CartonActivity
         if (mMazeArray[newPosition] == MazeAdapter.STATE_END) {
             if (checkMazeEnd()) {
                 mChronometer.stop();
+                if (mTrialTiming == 0) {
+                    mTrialTiming = mChronometer.getCount();
+                    mTextViewTrial.setText(String.format(Locale.ENGLISH, "%05.2f", mTrialTiming));
+                    mChronometer.reset();
+                    initMazeArray();
+                    mAdapter.notifyDataSetChanged();
+                    return;
+                } else {
+                    if (Pref.getCurrentInteraction(getApplicationContext()) == 2) { // should be 4 with voice and smart watch
+                        Pref.incrementCurrentActivity(getApplicationContext(), 1); // if user did with all kind of interaction we increment current activity
+                        Pref.setCurrentInteraction(getApplicationContext(), 0); // and we reset to 0 interaction
+                    } else {
+                        Pref.incrementCurrentInteraction(getApplicationContext(), 1); // if user just did it in all direction we increment interaction
+                    }
+                    Intent intent = new Intent(this, MainActivity.class);
+                    intent.putExtra(MainActivity.EXTRA_NOCONFIG, true);
+                    startActivity(intent);
+                    finish();
+                }
             }
         }
 
@@ -136,15 +164,29 @@ public class MazeActivity extends CartonActivity
         Timing init
          */
         mChronometer = (CentiChronometer) findViewById(R.id.chronometer);
+        mTrialTiming = 0f;
+        mTextViewTrial = (TextView) findViewById(R.id.textViewTrialTiming);
 
         /*
         Interaction
          */
-        mHeadRecognition = new HeadRecognition(this);
-        mHeadRecognition.setOnHeadGestureListener(this);
+        String interaction = getIntent().getStringExtra(TrainingActivity.EXTRA_INTERACTION);
 
+        int resourceId = getResources().getIdentifier("maze_" + interaction, "string", getPackageName());
+        TextView textViewInteraction = (TextView) findViewById(R.id.textViewInteraction);
+        textViewInteraction.setText(getString(resourceId));
+
+        mHeadRecognition = new HeadRecognition(this);
         TouchView touchView = (TouchView) findViewById(R.id.touchView);
-        touchView.setOnFingerTouchGestureListener(this);
+
+        switch (interaction) {
+            case "finger":
+                touchView.setOnFingerTouchGestureListener(this);
+                break;
+            case "head":
+                mHeadRecognition.setOnHeadGestureListener(this);
+                break;
+        }
     }
 
 

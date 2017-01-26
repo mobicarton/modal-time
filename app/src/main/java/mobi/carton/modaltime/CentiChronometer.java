@@ -56,6 +56,11 @@ public class CentiChronometer extends android.support.v7.widget.AppCompatTextVie
     }
 
 
+    public float getCount() {
+        return count;
+    }
+
+
     @Override // Runnable
     public void run() {
         while (!Thread.interrupted()) {

@@ -35,17 +35,6 @@
         android:contentDescription="@string/contentDescriptionTime"/>
 
 
-    <!--
-    <TextView
-        android:id="@+id/textViewTiming"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/imageViewTiming"
-        android:layout_alignTop="@+id/gridViewMaze"
-        android:textSize="@dimen/font_large"
-        android:textColor="@android:color/white"/>
-        -->
-
     <mobi.carton.modaltime.CentiChronometer
         android:id="@+id/chronometer"
         android:layout_width="wrap_content"
@@ -53,14 +42,25 @@
         android:layout_toRightOf="@+id/imageViewTiming"
         android:layout_alignTop="@+id/gridViewMaze"
         android:textSize="@dimen/font_large"
-        android:textColor="@android:color/white" />
+        android:textColor="@android:color/white"
+        android:text="00.00"/>
+
+    <TextView
+        android:id="@+id/textViewTrialTiming"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/imageViewTiming"
+        android:layout_below="@id/chronometer"
+        android:textSize="@dimen/font_normal"
+        android:textColor="@android:color/white"
+        android:text="-"/>
 
 
     <TextView
         android:id="@+id/textViewInteraction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/chronometer"
+        android:layout_below="@+id/textViewTrialTiming"
         android:layout_toRightOf="@+id/gridViewMaze"
         android:textSize="@dimen/font_title"
         android:textColor="@android:color/white"
@@ -68,6 +68,7 @@
         android:layout_marginTop="8dp"
         android:maxLines="1"
         android:text="@string/textFinger"/>
+
 
     <TextView
         android:id="@+id/textViewInstruction"
