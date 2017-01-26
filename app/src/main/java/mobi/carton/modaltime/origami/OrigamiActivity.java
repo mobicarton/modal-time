@@ -16,6 +16,7 @@ import mobi.carton.library.CartonActivity;
 import mobi.carton.library.CartonViewPager;
 import mobi.carton.library.HeadRecognition;
 import mobi.carton.modaltime.CustomPagerAdapter;
+import mobi.carton.modaltime.Pref;
 import mobi.carton.modaltime.R;
 
 public class OrigamiActivity extends CartonActivity
@@ -27,7 +28,7 @@ public class OrigamiActivity extends CartonActivity
 
 
 
-    private CartonViewPager mViewPager;
+    private CustomViewPager mViewPager;
     private int mNbSteps;
     private TextView mTextViewStepPosition;
     private ImageView mImageViewStepPosition;
@@ -37,11 +38,16 @@ public class OrigamiActivity extends CartonActivity
     private ContinuousSpeechRecognition mContinuousSpeechRecognition;
 
 
+    private int mPosition = 0;
+
+    private TextView mTextViewInteraction;
+
+
     private void actionDirection(int direction) {
         switch (direction) {
             case HeadRecognition.NOD_DOWN:
-                if (mViewPager.getCurrentItem() == mNbSteps)
-                    onBackPressed();
+                //if (mViewPager.getCurrentItem() == mNbSteps)
+                //    onBackPressed();
                 break;
         }
     }
@@ -58,21 +64,17 @@ public class OrigamiActivity extends CartonActivity
 
         setContentView(R.layout.activity_origami);
 
-        String name = "Tulip";
         mNbSteps = 23;
-
-        TextView textViewName = (TextView) findViewById(R.id.textView_origamiName);
-        textViewName.setText(name);
 
         List<Fragment> fragments = new ArrayList<>();
 
         int resourceId;
         for (int i = 1; i <= mNbSteps; i++) {
-            resourceId = getResources().getIdentifier(name.toLowerCase().concat("_step_").concat(Integer.toString(i)), "drawable", getPackageName());
+            resourceId = getResources().getIdentifier("tulip_step_".concat(Integer.toString(i)), "drawable", getPackageName());
             fragments.add(OrigamiFragment.newInstance(i, resourceId));
         }
 
-        fragments.add(OrigamiFragment.newInstance(0, getResources().getIdentifier(name.toLowerCase().concat("_finished"), "drawable", getPackageName())));
+        fragments.add(OrigamiFragment.newInstance(0, getResources().getIdentifier("tulip_finished", "drawable", getPackageName())));
 
         CustomPagerAdapter pagerAdapter = new CustomPagerAdapter(super.getSupportFragmentManager(), fragments);
 
@@ -80,7 +82,7 @@ public class OrigamiActivity extends CartonActivity
         mTextViewStepPosition.setText("1");
         mImageViewStepPosition = (ImageView) findViewById(R.id.imageView_stepPosition);
 
-        mViewPager = (CartonViewPager) findViewById(R.id.viewPager_OrigamiSteps);
+        mViewPager = (CustomViewPager) findViewById(R.id.viewPager_OrigamiSteps);
         mViewPager.setAdapter(pagerAdapter);
         mViewPager.setOffscreenPageLimit(3);
         final float scale = getResources().getDisplayMetrics().density;
@@ -88,11 +90,56 @@ public class OrigamiActivity extends CartonActivity
         mViewPager.addOnPageChangeListener(this);
         mViewPager.setOnScrollListener(this);
 
+
+        /*
+        Interaction
+         */
+
         mHeadRecognition = new HeadRecognition(this);
-        mHeadRecognition.setOnHeadGestureListener(this);
+
 
         mContinuousSpeechRecognition = new ContinuousSpeechRecognition(this);
         mContinuousSpeechRecognition.setOnTextListener(this);
+
+        mTextViewInteraction = (TextView) findViewById(R.id.textViewInteraction);
+
+        setInteraction();
+    }
+
+
+    private void setInteraction() {
+        if (mPosition == (Pref.getOrderFinger(getApplicationContext())-1) * 3) {
+            mViewPager.setPagingEnabled(true);
+            mHeadRecognition.setOnHeadGestureListener(null);
+            mTextViewInteraction.setText(getString(R.string.maze_finger));
+        }
+
+        if (mPosition == (Pref.getOrderHead(getApplicationContext())-1) * 3) {
+            mViewPager.setPagingEnabled(false);
+            mHeadRecognition.setOnHeadGestureListener(this);
+            mTextViewInteraction.setText(getString(R.string.maze_head));
+
+        }
+
+        /*
+        if (mPosition == (Pref.getOrderWatch(getApplicationContext())-1) * 3) {
+            mViewPager.setPagingEnabled(false);
+            mHeadRecognition.setOnHeadGestureListener(null);
+            mTextViewInteraction.setText(getString(R.string.maze_watch));
+        }
+
+        if (mPosition == (Pref.getOrderVoice(getApplicationContext())-1) * 3) {
+            mViewPager.setPagingEnabled(false);
+            mHeadRecognition.setOnHeadGestureListener(null);
+            mTextViewInteraction.setText(getString(R.string.maze_voice));
+        }
+        */
+
+        if (mPosition > 11) {
+            mViewPager.setPagingEnabled(true);
+            mHeadRecognition.setOnHeadGestureListener(this);
+            mTextViewInteraction.setText(getString(R.string.origami_all_interaction));
+        }
     }
 
 
@@ -162,6 +209,7 @@ public class OrigamiActivity extends CartonActivity
     // ViewPager.OnPageChangeListener
     @Override
     public void onPageSelected(int position) {
+        mPosition = position;
         if (position < mNbSteps) {
             mTextViewStepPosition.setText(String.format("%d", position+1));
             mImageViewStepPosition.setImageDrawable(null);
@@ -169,6 +217,7 @@ public class OrigamiActivity extends CartonActivity
             mTextViewStepPosition.setText("");
             mImageViewStepPosition.setImageResource(R.drawable.ic_action_accept);
         }
+        setInteraction();
     }
 
 

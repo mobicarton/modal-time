@@ -41,6 +41,7 @@
     <!-- Origami -->
 
     <string name="contentDescriptionStep">Origami diagram (one step)</string>
+    <string name="origami_all_interaction">Any kind of interaction you want</string>
 
 
     <!-- Training -->

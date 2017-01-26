@@ -49,7 +49,7 @@ public class MainActivity extends CartonActivity {
             // .. with which interaction
             int order = Pref.getCurrentInteraction(getApplicationContext());
 
-            if (Pref.getCurrentInteraction(getApplicationContext()) == Pref.getOrderFinger(getApplicationContext())) {
+            if (order == Pref.getOrderFinger(getApplicationContext())) {
                 intent.putExtra(TrainingActivity.EXTRA_INTERACTION, "finger");
             }
 
