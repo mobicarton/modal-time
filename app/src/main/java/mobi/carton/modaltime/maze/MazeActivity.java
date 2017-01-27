@@ -85,7 +85,7 @@ public class MazeActivity extends CartonActivity
                     mAdapter.notifyDataSetChanged();
                     return;
                 } else {
-                    if (Pref.getCurrentInteraction(getApplicationContext()) == 2) { // should be 4 with voice and smart watch
+                    if (Pref.getCurrentInteraction(getApplicationContext()) == 4) { // should be 4 with voice and smart watch
                         Pref.incrementCurrentActivity(getApplicationContext(), 1); // if user did with all kind of interaction we increment current activity
                         Pref.setCurrentInteraction(getApplicationContext(), 0); // and we reset to 0 interaction
                     } else {
@@ -197,6 +197,12 @@ public class MazeActivity extends CartonActivity
                 mControlWearApi.startWearApp(ControlWearApi.MODE_PAD);
                 break;
             case "voice":
+                break;
+            case "all":
+                touchView.setOnFingerTouchGestureListener(this);
+                mHeadRecognition.setOnHeadGestureListener(this);
+                mControlWearApi.setOnControlSwipeListener(this);
+                mControlWearApi.startWearApp(ControlWearApi.MODE_PAD);
                 break;
         }
     }

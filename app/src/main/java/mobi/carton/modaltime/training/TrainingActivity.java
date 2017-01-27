@@ -138,6 +138,17 @@ public class TrainingActivity extends CartonActivity
                 mControlWearApi.setOnControlSwipeListener(this);
                 mControlWearApi.startWearApp(ControlWearApi.MODE_PAD);
                 break;
+            case "all":
+                // finger
+                touchView.setOnFingerTouchGestureListener(this);
+                // head
+                mHeadRecognition.setOnHeadGestureListener(this);
+                // voice
+                mContinuousSpeechRecognition.setOnTextListener(this);
+                // watch
+                mControlWearApi.setOnControlSwipeListener(this);
+                mControlWearApi.startWearApp(ControlWearApi.MODE_PAD);
+                break;
         }
     }
 
@@ -179,7 +190,7 @@ public class TrainingActivity extends CartonActivity
 
             if (mCount == 0) { // if user did 3 times the action
                 if (mDirection >= 3) {
-                    if (Pref.getCurrentInteraction(getApplicationContext()) == 2) { // should be 4 with voice and smart watch
+                    if (Pref.getCurrentInteraction(getApplicationContext()) == 4) { // should be 4 with voice and smart watch
                         Pref.incrementCurrentActivity(getApplicationContext(), 1); // if user did with all kind of interaction we increment current activity
                         Pref.setCurrentInteraction(getApplicationContext(), 1); // and we reset to 0 interaction
                     } else {

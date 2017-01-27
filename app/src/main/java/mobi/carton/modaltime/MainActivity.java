@@ -61,8 +61,12 @@ public class MainActivity extends CartonActivity {
                 intent.putExtra(TrainingActivity.EXTRA_INTERACTION, "watch");
             }
 
-            if (order == Pref.getOrderVoice(getApplicationContext())) {
-                intent.putExtra(TrainingActivity.EXTRA_INTERACTION, "voice");
+            //if (order == Pref.getOrderVoice(getApplicationContext())) {
+            //    intent.putExtra(TrainingActivity.EXTRA_INTERACTION, "voice");
+            //}
+
+            if (order == 4) {
+                intent.putExtra(TrainingActivity.EXTRA_INTERACTION, "all");
             }
 
             // launch the activity

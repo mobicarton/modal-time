@@ -36,6 +36,7 @@
     <string name="maze_head">Head Gesture</string>
     <string name="maze_voice">Voice Control</string>
     <string name="maze_watch">Smart Watch</string>
+    <string name="maze_all">Any kind of Interaction</string>
 
 
     <!-- Origami -->
@@ -66,7 +67,9 @@
     <string name="training_voice_up">You can use your voice too, say "Ok" (3 times).</string>
     <string name="training_voice_down">You can use your voice too, say "Cancel" (3 times).</string>
 
-
-    <string name="training_all">Last training, do any kind of interaction you want to do 3 times each direction</string>
+    <string name="training_all_right">Use any kind of interaction you want to go RIGHT (3 times).</string>
+    <string name="training_all_left">Use any kind of interaction you want to go LEFT (3 times).</string>
+    <string name="training_all_up">Use any kind of interaction you want to go UP (3 times).</string>
+    <string name="training_all_down">Use any kind of interaction you want to go DOWN (3 times).</string>
 
 </resources>
