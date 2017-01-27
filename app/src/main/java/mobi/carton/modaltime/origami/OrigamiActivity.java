@@ -11,6 +11,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.github.controlwear.library.android.ControlWearApi;
 import mobi.carton.csr.ContinuousSpeechRecognition;
 import mobi.carton.library.CartonActivity;
 import mobi.carton.library.CartonViewPager;
@@ -24,7 +25,8 @@ public class OrigamiActivity extends CartonActivity
         HeadRecognition.OnHeadGestureListener,
         ViewPager.OnPageChangeListener,
         CartonViewPager.OnScrollListener,
-        ContinuousSpeechRecognition.OnTextListener {
+        ContinuousSpeechRecognition.OnTextListener,
+        ControlWearApi.OnControlSwipeListener {
 
 
 
@@ -41,6 +43,8 @@ public class OrigamiActivity extends CartonActivity
     private int mPosition = 0;
 
     private TextView mTextViewInteraction;
+
+    private ControlWearApi mControlWearApi;
 
 
     private void actionDirection(int direction) {
@@ -103,6 +107,8 @@ public class OrigamiActivity extends CartonActivity
 
         mTextViewInteraction = (TextView) findViewById(R.id.textViewInteraction);
 
+        mControlWearApi = new ControlWearApi(this);
+
         setInteraction();
     }
 
@@ -111,23 +117,27 @@ public class OrigamiActivity extends CartonActivity
         if (mPosition == (Pref.getOrderFinger(getApplicationContext())-1) * 3) {
             mViewPager.setPagingEnabled(true);
             mHeadRecognition.setOnHeadGestureListener(null);
+            mControlWearApi.setOnControlSwipeListener(null);
             mTextViewInteraction.setText(getString(R.string.maze_finger));
         }
 
         if (mPosition == (Pref.getOrderHead(getApplicationContext())-1) * 3) {
             mViewPager.setPagingEnabled(false);
             mHeadRecognition.setOnHeadGestureListener(this);
+            mControlWearApi.setOnControlSwipeListener(null);
             mTextViewInteraction.setText(getString(R.string.maze_head));
 
         }
 
-        /*
         if (mPosition == (Pref.getOrderWatch(getApplicationContext())-1) * 3) {
             mViewPager.setPagingEnabled(false);
             mHeadRecognition.setOnHeadGestureListener(null);
+            mControlWearApi.setOnControlSwipeListener(this);
+            mControlWearApi.startWearApp(ControlWearApi.MODE_PAD);
             mTextViewInteraction.setText(getString(R.string.maze_watch));
         }
 
+        /*
         if (mPosition == (Pref.getOrderVoice(getApplicationContext())-1) * 3) {
             mViewPager.setPagingEnabled(false);
             mHeadRecognition.setOnHeadGestureListener(null);
@@ -138,8 +148,17 @@ public class OrigamiActivity extends CartonActivity
         if (mPosition > 11) {
             mViewPager.setPagingEnabled(true);
             mHeadRecognition.setOnHeadGestureListener(this);
+            mControlWearApi.setOnControlSwipeListener(this);
+            mControlWearApi.startWearApp(ControlWearApi.MODE_PAD);
             mTextViewInteraction.setText(getString(R.string.origami_all_interaction));
         }
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mControlWearApi.connect();
     }
 
 
@@ -156,6 +175,7 @@ public class OrigamiActivity extends CartonActivity
         super.onPause();
         mHeadRecognition.stop();
         mContinuousSpeechRecognition.stop();
+        mControlWearApi.disconnect();
     }
 
 
@@ -241,17 +261,11 @@ public class OrigamiActivity extends CartonActivity
         Log.d("onTextMatched", matchedText.toString());
         for (String s : matchedText) {
             switch (s) {
-                case "next":
+                case "right":
                     onTilt(HeadRecognition.TILT_RIGHT);
                     return;
-                case "previous":
+                case "left":
                     onTilt(HeadRecognition.TILT_LEFT);
-                    return;
-                case "cancel":
-                    actionDirection(HeadRecognition.NOD_UP);
-                    return;
-                case "ok":
-                    actionDirection(HeadRecognition.NOD_DOWN);
                     return;
             }
         }
@@ -261,6 +275,34 @@ public class OrigamiActivity extends CartonActivity
     // ContinuousSpeechRecognition.OnTextListener
     @Override
     public void onError(int error) {
+
+    }
+
+
+    // ControlWearApi.OnControlSwipeListener
+    @Override
+    public void OnSwipeLeft() {
+        mViewPager.previousPage();
+    }
+
+
+    // ControlWearApi.OnControlSwipeListener
+    @Override
+    public void OnSwipeRight() {
+        mViewPager.nextPage();
+    }
+
+
+    // ControlWearApi.OnControlSwipeListener
+    @Override
+    public void OnSwipeUp() {
+
+    }
+
+
+    // ControlWearApi.OnControlSwipeListener
+    @Override
+    public void OnSwipeDown() {
 
     }
 }

@@ -30,4 +30,5 @@ dependencies {
 
     compile 'mobi.carton:library:0.1.0'
     compile 'mobi.carton.csr:library:0.5.0'
+    compile 'io.github.controlwear:library:0.1.3'
 }

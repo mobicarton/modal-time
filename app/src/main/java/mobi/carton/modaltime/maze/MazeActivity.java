@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import java.util.Locale;
 
+import io.github.controlwear.library.android.ControlWearApi;
 import mobi.carton.library.CartonActivity;
 import mobi.carton.library.CartonSdk;
 import mobi.carton.library.HeadRecognition;
@@ -21,7 +22,8 @@ import mobi.carton.modaltime.training.TrainingActivity;
 public class MazeActivity extends CartonActivity
         implements
         HeadRecognition.OnHeadGestureListener,
-        TouchView.OnFingerTouchGestureListener {
+        TouchView.OnFingerTouchGestureListener,
+        ControlWearApi.OnControlSwipeListener {
 
 
     private MazeAdapter mAdapter;
@@ -35,6 +37,9 @@ public class MazeActivity extends CartonActivity
 
 
     private HeadRecognition mHeadRecognition;
+
+
+    private ControlWearApi mControlWearApi;
 
 
     private void initMazeArray() {
@@ -178,6 +183,7 @@ public class MazeActivity extends CartonActivity
 
         mHeadRecognition = new HeadRecognition(this);
         TouchView touchView = (TouchView) findViewById(R.id.touchView);
+        mControlWearApi = new ControlWearApi(this);
 
         switch (interaction) {
             case "finger":
@@ -185,6 +191,12 @@ public class MazeActivity extends CartonActivity
                 break;
             case "head":
                 mHeadRecognition.setOnHeadGestureListener(this);
+                break;
+            case "watch":
+                mControlWearApi.setOnControlSwipeListener(this);
+                mControlWearApi.startWearApp(ControlWearApi.MODE_PAD);
+                break;
+            case "voice":
                 break;
         }
     }
@@ -201,6 +213,14 @@ public class MazeActivity extends CartonActivity
     protected void onPause() {
         super.onPause();
         mHeadRecognition.stop();
+        mControlWearApi.disconnect();
+    }
+
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mControlWearApi.connect();
     }
 
 
@@ -263,5 +283,33 @@ public class MazeActivity extends CartonActivity
             default:
                 break;
         }
+    }
+
+
+    // ControlWearApi.OnControlSwipeListener
+    @Override
+    public void OnSwipeLeft() {
+        goLeft();
+    }
+
+
+    // ControlWearApi.OnControlSwipeListener
+    @Override
+    public void OnSwipeRight() {
+        goRight();
+    }
+
+
+    // ControlWearApi.OnControlSwipeListener
+    @Override
+    public void OnSwipeUp() {
+        goUp();
+    }
+
+
+    // ControlWearApi.OnControlSwipeListener
+    @Override
+    public void OnSwipeDown() {
+        goDown();
     }
 }
