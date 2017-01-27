@@ -125,11 +125,12 @@ public class ConfigActivity extends AppCompatActivity
                 Pref.setOrderFinger(context, Integer.parseInt(editTextFinger.getText().toString()));
                 Pref.setOrderWatch(context, Integer.parseInt(editTextWatch.getText().toString()));
 
-                Pref.setCurrentActivity(context, 3);
+                Pref.setCurrentActivity(context, 1);
                 Pref.setCurrentInteraction(context, 1);
 
-                Intent intent = new Intent(this, MainActivity.class);
-                intent.putExtra(MainActivity.EXTRA_NOCONFIG, true);
+                //Intent intent = new Intent(this, MainActivity.class);
+                //intent.putExtra(MainActivity.EXTRA_NOCONFIG, true);
+                Intent intent = new Intent(this, CalibrateActivity.class);
                 startActivity(intent);
                 finish();
                 break;

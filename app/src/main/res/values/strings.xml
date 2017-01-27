@@ -9,6 +9,9 @@
     -->
 
 
+    <string name="calibrate">Just look toward horizon, make sure it is near 0, then touch the screen</string>
+
+
     <!-- Config -->
 
     <string name="hintName">name</string>

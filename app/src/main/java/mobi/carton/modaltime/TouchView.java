@@ -25,8 +25,16 @@ public class TouchView extends View
     }
 
 
+    public interface OnFingerTapListener {
+
+        void onTap();
+    }
+
+
     private OnFingerTouchGestureListener mCallback;
     private GestureDetector mDetector;
+
+    private OnFingerTapListener mOnFingerTapListener;
 
 
     public TouchView(Context context) {
@@ -49,12 +57,22 @@ public class TouchView extends View
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_UP) {
+            if (mOnFingerTapListener != null)
+                mOnFingerTapListener.onTap();
+        }
+
         return mDetector.onTouchEvent(event);
     }
 
 
     public void setOnFingerTouchGestureListener(OnFingerTouchGestureListener callback) {
         mCallback = callback;
+    }
+
+
+    public void setOnFingerTapListener(OnFingerTapListener l) {
+        mOnFingerTapListener = l;
     }
 
 

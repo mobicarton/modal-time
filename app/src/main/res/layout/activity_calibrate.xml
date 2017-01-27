@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground">
+
+
+
+    <mobi.carton.modaltime.NeedleView
+        android:id="@+id/needleView"
+        android:layout_width="48dp"
+        android:layout_height="match_parent"
+        android:layout_alignRight="@+id/relativeLayout"
+        android:layout_below="@+id/progressbarCalibrate"
+        app:needleColor="@color/calibrate_needle"
+        app:needleWidth="1dp"
+        app:orientationVertical="true"/>
+
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="72dp"
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/progressbarCalibrate">
+
+        <TextView
+            android:id="@+id/textViewTracking"
+            android:layout_width="24dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textColor="@android:color/white"/>
+
+        <View
+            android:layout_width="48dp"
+            android:layout_height="1dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/textViewTracking"
+            android:background="@color/calibrate_horizontal"/>
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/textViewCalibrate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/font_normal"
+        android:text="@string/calibrate"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"/>
+
+
+    <ProgressBar
+        android:id="@+id/progressbarCalibrate"
+        android:layout_width="160dp"
+        android:layout_height="4dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/textViewCalibrate"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:progressDrawable="@drawable/progressbar_calibrate"
+        android:max="100"
+        android:progress="100"/>
+
+
+    <mobi.carton.modaltime.TouchView
+        android:id="@+id/touchView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</RelativeLayout>

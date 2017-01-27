@@ -32,6 +32,11 @@
             android:name=".ConfigActivity">
         </activity>
 
+        <activity
+            android:name=".CalibrateActivity"
+            android:screenOrientation="landscape">
+        </activity>
+
 
         <activity
             android:name=".training.TrainingActivity"
