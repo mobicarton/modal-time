@@ -137,6 +137,9 @@ public class TrainingActivity extends CartonActivity
             case "watch":
                 mControlWearApi.setOnControlSwipeListener(this);
                 mControlWearApi.startWearApp(ControlWearApi.MODE_PAD);
+                ImageView imageViewWatch = new ImageView(this);
+                imageViewWatch.setImageResource(R.drawable.controlwear);
+                frameLayoutHelp.addView(imageViewWatch);
                 break;
             case "all":
                 // finger

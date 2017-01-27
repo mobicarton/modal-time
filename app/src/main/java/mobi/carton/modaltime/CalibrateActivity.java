@@ -25,8 +25,6 @@ public class CalibrateActivity extends CartonActivity
     private TextView mTextViewTracking;
     private NeedleView mNeedleView;
 
-    private TouchView mTouchView;
-
     private int mValue;
 
 
@@ -50,7 +48,7 @@ public class CalibrateActivity extends CartonActivity
         objectAnimator.addListener(this);
         objectAnimator.start();
 
-        mTouchView = (TouchView) findViewById(R.id.touchView);
+        TouchView mTouchView = (TouchView) findViewById(R.id.touchView);
         mTouchView.setOnFingerTapListener(this);
     }
 
