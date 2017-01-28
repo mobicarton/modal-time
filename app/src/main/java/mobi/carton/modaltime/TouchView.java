@@ -7,6 +7,7 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 
+import mobi.carton.library.CartonPrefs;
 import mobi.carton.library.CartonSdk;
 
 
@@ -132,7 +133,10 @@ public class TouchView extends View
 
         // Right
         if (45 >= angle && angle > -45) {
-            direction = CartonSdk.RIGHT;
+            if (CartonPrefs.getWithoutCarton(getContext()))
+                direction = CartonSdk.RIGHT;
+            else
+                direction = CartonSdk.LEFT;
         } else
 
             // Down (back == up with head)
@@ -142,7 +146,10 @@ public class TouchView extends View
 
                 // Left
                 if (-135 >= angle && angle >= -180 || 180 >= angle && angle > 135) {
-                    direction = CartonSdk.LEFT;
+                    if (CartonPrefs.getWithoutCarton(getContext()))
+                        direction = CartonSdk.LEFT;
+                    else
+                        direction = CartonSdk.RIGHT;
                 } else
 
                     // Up (go == down with head)
