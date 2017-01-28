@@ -18,6 +18,7 @@ import mobi.carton.csr.ContinuousSpeechRecognition;
 import mobi.carton.library.CartonActivity;
 import mobi.carton.library.CartonSdk;
 import mobi.carton.library.HeadRecognition;
+import mobi.carton.modaltime.LogSaved;
 import mobi.carton.modaltime.MainActivity;
 import mobi.carton.modaltime.NeedleView;
 import mobi.carton.modaltime.Pref;
@@ -224,6 +225,7 @@ public class TrainingActivity extends CartonActivity
     // TouchView.OnFingerTouchGestureListener
     @Override
     public void onSwipe(int direction) {
+        LogSaved.LogWithHeaderProcess(getApplicationContext(), "finger", direction);
         checkDirection(direction);
     }
 
@@ -231,6 +233,7 @@ public class TrainingActivity extends CartonActivity
     // HeadRecognition.OnHeadGestureListener
     @Override
     public void onTilt(int direction) {
+        LogSaved.LogWithHeaderProcess(getApplicationContext(), "head", direction);
         checkDirection(direction);
     }
 
@@ -238,6 +241,7 @@ public class TrainingActivity extends CartonActivity
     // HeadRecognition.OnHeadGestureListener
     @Override
     public void onNod(int direction) {
+        LogSaved.LogWithHeaderProcess(getApplicationContext(), "head", direction);
         checkDirection(direction);
     }
 
@@ -294,6 +298,7 @@ public class TrainingActivity extends CartonActivity
     // ControlWearApi.OnControlSwipeListener
     @Override
     public void OnSwipeLeft() {
+        LogSaved.LogWithHeaderProcess(getApplicationContext(), "watch", CartonSdk.LEFT);
         checkDirection(CartonSdk.LEFT);
     }
 
@@ -301,6 +306,7 @@ public class TrainingActivity extends CartonActivity
     // ControlWearApi.OnControlSwipeListener
     @Override
     public void OnSwipeRight() {
+        LogSaved.LogWithHeaderProcess(getApplicationContext(), "watch", CartonSdk.RIGHT);
         checkDirection(CartonSdk.RIGHT);
     }
 
@@ -308,6 +314,7 @@ public class TrainingActivity extends CartonActivity
     // ControlWearApi.OnControlSwipeListener
     @Override
     public void OnSwipeUp() {
+        LogSaved.LogWithHeaderProcess(getApplicationContext(), "watch", CartonSdk.UP);
         checkDirection(CartonSdk.UP);
     }
 
@@ -315,6 +322,7 @@ public class TrainingActivity extends CartonActivity
     // ControlWearApi.OnControlSwipeListener
     @Override
     public void OnSwipeDown() {
+        LogSaved.LogWithHeaderProcess(getApplicationContext(), "watch", CartonSdk.DOWN);
         checkDirection(CartonSdk.DOWN);
     }
 }

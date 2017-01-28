@@ -58,7 +58,7 @@ public class Pref {
      * @param context Context to be used to lookup the {@link android.content.SharedPreferences}.
      * @return return the user's name
      */
-    public static String getHanziLearningList(final Context context) {
+    public static String getUserName(final Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         return sharedPreferences.getString(PREF_USER_NAME, "default");
     }
