@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Modal Time</string>
+    <string name="buttonValidate">Valider</string>
+    <string name="calibrate">Regardez en face normalement (tête horizontal), la valeur doit être proche de 0 (+/- 5), et appuyer sur l\'écran</string>
+    <string name="hintName">nom</string>
+    <string name="maze_all">N\'importe quelle interaction</string>
+    <string name="maze_finger">Doigt sur l\'écran</string>
+    <string name="maze_voice">Contrôle Vocal</string>
+    <string name="maze_head">Geste de la tête</string>
+    <string name="maze_watch">Geste sur la montre</string>
+    <string name="origami_all_interaction">N\'importe quelle interaction</string>
+    <string name="app_description">Apprendre et mesurer l\'utilisation des différentes modalités d\'interaction</string>
+    <string name="textErrorUnique">Erreur : Certaines valeurs sont identique, elles doivent être différentes</string>
+    <string name="textErrorName">Erreur : Le nom doit être composé d\'au moins 3 caractères</string>
+    <string name="textErrorValues">Erreur : Certaines valeurs sont invalides, elles doivent être comprise entre 1 et 4 (inclus)</string>
+    <string name="textFinger">Geste du doigt</string>
+    <string name="textHead">Geste de la tête</string>
+    <string name="textInstructionMaze">Commence à 10, doit passer par 1, 8 et 14 et finir à 16</string>
+    <string name="textInteraction">Choisissez un ordre d\'interaction (entre 1 et 4)</string>
+    <string name="textVoice">Contrôle Vocal</string>
+    <string name="textWatch">Montre Intelligente</string>
+    <string name="training_all_down">Allez vers le \"BAS\" (3 fois) avec N\'IMPORTE QUELLE INTERACTION</string>
+    <string name="training_all_left">Allez vers la \"GAUCHE\" (3 fois) avec N\'IMPORTE QUELLE INTERACTION</string>
+    <string name="training_all_right">Allez vers la \"DROITE\" (3 fois) avec N\'IMPORTE QUELLE INTERACTION</string>
+    <string name="training_all_up">Allez vers le \"HAUT\" (3 fois) avec N\'IMPORTE QUELLE INTERACTION</string>
+    <string name="training_finger_down">Allez vers le \"BAS\" (3 fois) avec VOTRE DOIGT SUR L\'ECRAN</string>
+    <string name="training_finger_left">Allez vers la \"GAUCHE\" (3 fois) avec VOTRE DOIGT SUR L\'ECRAN</string>
+    <string name="training_finger_right">Allez vers la \"DROITE\" (3 fois) avec VOTRE DOIGT SUR L\'ECRAN</string>
+    <string name="training_finger_up">Allez vers le \"HAUT\" (3 fois) avec VOTRE DOIGT SUR L\'ECRAN</string>
+    <string name="training_head_down">Allez vers le \"BAS\" (3 fois) avec un GESTE DE LA TËTE</string>
+    <string name="training_head_left">Allez vers la \"GAUCHE\" (3 fois) avec un GESTE DE LA TËTE</string>
+    <string name="training_head_right">Allez vers la \"DROITE\" (3 fois) avec un GESTE DE LA TËTE</string>
+    <string name="training_head_up">Allez vers le \"HAUT\" (3 fois) avec un GESTE DE LA TËTE</string>
+    <string name="training_voice_down">Dire \"DOWN\" pour aller vers le \"BAS\" (3 fois) avec VOTRE VOIX</string>
+    <string name="training_voice_left">Dire \"LEFT\" pour aller vers la \"GAUCHE\" (3 fois) avec VOTRE VOIX</string>
+    <string name="training_voice_up">Dire \"UP\" pour aller vers le \"HAUT\" (3 fois) avec VOTRE VOIX</string>
+    <string name="training_voice_right">Dire \"RIGHT\" pour aller vers la \"DROITE\" (3 fois) avec VOTRE VOIX</string>
+    <string name="training_watch_down">Allez vers le \"BAS\" (3 fois) avec un GESTE SUR LA MONTRE</string>
+    <string name="training_watch_left">Allez vers la \"GAUCHE\" (3 fois) avec un GESTE SUR LA MONTRE</string>
+    <string name="training_watch_right">Allez vers la \"DROITE\" (3 fois) avec un GESTE SUR LA MONTRE</string>
+    <string name="training_watch_up">Allez vers le \"HAUT\" (3 fois) avec un GESTE SUR LA MONTRE</string>
+    <string name="contentDescriptionStep">Origami</string>
+    <string name="contentDescriptionTime">Chrono</string>
+</resources>
