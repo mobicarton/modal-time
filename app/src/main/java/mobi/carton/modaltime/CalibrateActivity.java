@@ -50,6 +50,7 @@ public class CalibrateActivity extends CartonActivity
 
         TouchView mTouchView = (TouchView) findViewById(R.id.touchView);
         mTouchView.setOnFingerTapListener(this);
+        LogSaved.LogWithHeader(getApplicationContext(), "start Calibration");
     }
 
 
@@ -111,6 +112,7 @@ public class CalibrateActivity extends CartonActivity
     @Override
     public void onTap() {
         if (mValue < 5 && mValue > -5) {
+            LogSaved.LogWithHeader(getApplicationContext(), "start Training");
             Intent intent = new Intent(this, MainActivity.class);
             intent.putExtra(MainActivity.EXTRA_NOCONFIG, true);
             startActivity(intent);

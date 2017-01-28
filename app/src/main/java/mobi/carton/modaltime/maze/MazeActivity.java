@@ -13,6 +13,7 @@ import mobi.carton.library.CartonActivity;
 import mobi.carton.library.CartonSdk;
 import mobi.carton.library.HeadRecognition;
 import mobi.carton.modaltime.CentiChronometer;
+import mobi.carton.modaltime.LogSaved;
 import mobi.carton.modaltime.MainActivity;
 import mobi.carton.modaltime.Pref;
 import mobi.carton.modaltime.R;
@@ -87,7 +88,8 @@ public class MazeActivity extends CartonActivity
                 } else {
                     if (Pref.getCurrentInteraction(getApplicationContext()) == 4) { // should be 4 with voice and smart watch
                         Pref.incrementCurrentActivity(getApplicationContext(), 1); // if user did with all kind of interaction we increment current activity
-                        Pref.setCurrentInteraction(getApplicationContext(), 0); // and we reset to 0 interaction
+                        LogSaved.LogWithHeader(getApplicationContext(), "start Origami");
+                        Pref.setCurrentInteraction(getApplicationContext(), 1); // and we reset to 0 interaction
                     } else {
                         Pref.incrementCurrentInteraction(getApplicationContext(), 1); // if user just did it in all direction we increment interaction
                     }
@@ -240,9 +242,11 @@ public class MazeActivity extends CartonActivity
     public void onTilt(int direction) {
         switch (direction) {
             case HeadRecognition.TILT_LEFT:
+                LogSaved.LogWithHeaderProcess(getApplicationContext(), "head", CartonSdk.LEFT);
                 goLeft();
                 break;
             case HeadRecognition.TILT_RIGHT:
+                LogSaved.LogWithHeaderProcess(getApplicationContext(), "head", CartonSdk.RIGHT);
                 goRight();
                 break;
         }
@@ -254,9 +258,11 @@ public class MazeActivity extends CartonActivity
     public void onNod(int direction) {
         switch (direction) {
             case HeadRecognition.NOD_DOWN:
+                LogSaved.LogWithHeaderProcess(getApplicationContext(), "head", CartonSdk.DOWN);
                 goDown();
                 break;
             case HeadRecognition.NOD_UP:
+                LogSaved.LogWithHeaderProcess(getApplicationContext(), "head", CartonSdk.UP);
                 goUp();
                 break;
         }
@@ -275,15 +281,19 @@ public class MazeActivity extends CartonActivity
     public void onSwipe(int direction) {
         switch (direction) {
             case CartonSdk.RIGHT:
+                LogSaved.LogWithHeaderProcess(getApplicationContext(), "finger", CartonSdk.RIGHT);
                 goRight();
                 break;
             case CartonSdk.LEFT:
+                LogSaved.LogWithHeaderProcess(getApplicationContext(), "finger", CartonSdk.LEFT);
                 goLeft();
                 break;
             case CartonSdk.UP:
+                LogSaved.LogWithHeaderProcess(getApplicationContext(), "finger", CartonSdk.UP);
                 goUp();
                 break;
             case CartonSdk.DOWN:
+                LogSaved.LogWithHeaderProcess(getApplicationContext(), "finger", CartonSdk.DOWN);
                 goDown();
                 break;
             default:
@@ -295,6 +305,7 @@ public class MazeActivity extends CartonActivity
     // ControlWearApi.OnControlSwipeListener
     @Override
     public void OnSwipeLeft() {
+        LogSaved.LogWithHeaderProcess(getApplicationContext(), "watch", CartonSdk.LEFT);
         goLeft();
     }
 
@@ -302,6 +313,7 @@ public class MazeActivity extends CartonActivity
     // ControlWearApi.OnControlSwipeListener
     @Override
     public void OnSwipeRight() {
+        LogSaved.LogWithHeaderProcess(getApplicationContext(), "watch", CartonSdk.RIGHT);
         goRight();
     }
 
@@ -309,6 +321,7 @@ public class MazeActivity extends CartonActivity
     // ControlWearApi.OnControlSwipeListener
     @Override
     public void OnSwipeUp() {
+        LogSaved.LogWithHeaderProcess(getApplicationContext(), "watch", CartonSdk.UP);
         goUp();
     }
 
@@ -316,6 +329,7 @@ public class MazeActivity extends CartonActivity
     // ControlWearApi.OnControlSwipeListener
     @Override
     public void OnSwipeDown() {
+        LogSaved.LogWithHeaderProcess(getApplicationContext(), "watch", CartonSdk.DOWN);
         goDown();
     }
 }

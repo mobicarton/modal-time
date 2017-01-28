@@ -196,6 +196,7 @@ public class TrainingActivity extends CartonActivity
                 if (mDirection >= 3) {
                     if (Pref.getCurrentInteraction(getApplicationContext()) == 4) { // should be 4 with voice and smart watch
                         Pref.incrementCurrentActivity(getApplicationContext(), 1); // if user did with all kind of interaction we increment current activity
+                        LogSaved.LogWithHeader(getApplicationContext(), "start Maze");
                         Pref.setCurrentInteraction(getApplicationContext(), 1); // and we reset to 0 interaction
                     } else {
                         Pref.incrementCurrentInteraction(getApplicationContext(), 1); // if user just did it in all direction we increment interaction

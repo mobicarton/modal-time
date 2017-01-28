@@ -14,9 +14,11 @@ import java.util.List;
 import io.github.controlwear.library.android.ControlWearApi;
 import mobi.carton.csr.ContinuousSpeechRecognition;
 import mobi.carton.library.CartonActivity;
+import mobi.carton.library.CartonSdk;
 import mobi.carton.library.CartonViewPager;
 import mobi.carton.library.HeadRecognition;
 import mobi.carton.modaltime.CustomPagerAdapter;
+import mobi.carton.modaltime.LogSaved;
 import mobi.carton.modaltime.Pref;
 import mobi.carton.modaltime.R;
 
@@ -53,6 +55,11 @@ public class OrigamiActivity extends CartonActivity
                 //if (mViewPager.getCurrentItem() == mNbSteps)
                 //    onBackPressed();
                 break;
+            case CartonSdk.LEFT: // inverted
+                LogSaved.LogWithHeaderProcess(getApplicationContext(), "finger", CartonSdk.RIGHT);
+                break;
+            case CartonSdk.RIGHT: // inverted
+                LogSaved.LogWithHeaderProcess(getApplicationContext(), "finger", CartonSdk.LEFT);
         }
     }
 
@@ -119,6 +126,7 @@ public class OrigamiActivity extends CartonActivity
             mHeadRecognition.setOnHeadGestureListener(null);
             mControlWearApi.setOnControlSwipeListener(null);
             mTextViewInteraction.setText(getString(R.string.maze_finger));
+            Pref.setCurrentInteraction(getApplicationContext(), Pref.getOrderFinger(getApplicationContext()));
         }
 
         if (mPosition == (Pref.getOrderHead(getApplicationContext())-1) * 3) {
@@ -126,7 +134,7 @@ public class OrigamiActivity extends CartonActivity
             mHeadRecognition.setOnHeadGestureListener(this);
             mControlWearApi.setOnControlSwipeListener(null);
             mTextViewInteraction.setText(getString(R.string.maze_head));
-
+            Pref.setCurrentInteraction(getApplicationContext(), Pref.getOrderHead(getApplicationContext()));
         }
 
         if (mPosition == (Pref.getOrderWatch(getApplicationContext())-1) * 3) {
@@ -135,6 +143,7 @@ public class OrigamiActivity extends CartonActivity
             mControlWearApi.setOnControlSwipeListener(this);
             mControlWearApi.startWearApp(ControlWearApi.MODE_PAD);
             mTextViewInteraction.setText(getString(R.string.maze_watch));
+            Pref.setCurrentInteraction(getApplicationContext(), Pref.getOrderWatch(getApplicationContext()));
         }
 
         /*
@@ -145,12 +154,13 @@ public class OrigamiActivity extends CartonActivity
         }
         */
 
-        if (mPosition > 11) {
+        if (mPosition > 8) {
             mViewPager.setPagingEnabled(true);
             mHeadRecognition.setOnHeadGestureListener(this);
             mControlWearApi.setOnControlSwipeListener(this);
             mControlWearApi.startWearApp(ControlWearApi.MODE_PAD);
             mTextViewInteraction.setText(getString(R.string.origami_all_interaction));
+            Pref.setCurrentInteraction(getApplicationContext(), 4);
         }
     }
 
@@ -196,9 +206,11 @@ public class OrigamiActivity extends CartonActivity
     public void onTilt(int direction) {
         switch (direction) {
             case HeadRecognition.TILT_RIGHT:
+                LogSaved.LogWithHeaderProcess(getApplicationContext(), "head", CartonSdk.RIGHT);
                 mViewPager.nextPage();
                 break;
             case HeadRecognition.TILT_LEFT:
+                LogSaved.LogWithHeaderProcess(getApplicationContext(), "head", CartonSdk.LEFT);
                 mViewPager.previousPage();
                 break;
         }
@@ -244,7 +256,6 @@ public class OrigamiActivity extends CartonActivity
     // ViewPager.OnPageChangeListener
     @Override
     public void onPageScrollStateChanged(int state) {
-
     }
 
 
@@ -282,6 +293,7 @@ public class OrigamiActivity extends CartonActivity
     // ControlWearApi.OnControlSwipeListener
     @Override
     public void OnSwipeLeft() {
+        LogSaved.LogWithHeaderProcess(getApplicationContext(), "watch", CartonSdk.LEFT);
         mViewPager.previousPage();
     }
 
@@ -289,6 +301,7 @@ public class OrigamiActivity extends CartonActivity
     // ControlWearApi.OnControlSwipeListener
     @Override
     public void OnSwipeRight() {
+        LogSaved.LogWithHeaderProcess(getApplicationContext(), "watch", CartonSdk.RIGHT);
         mViewPager.nextPage();
     }
 

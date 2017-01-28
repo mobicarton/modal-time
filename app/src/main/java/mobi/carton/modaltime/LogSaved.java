@@ -103,7 +103,7 @@ public class LogSaved {
             if (!fileDirectory.mkdirs()) {
                 Log.e(LOG_TAG, "Directory not created");
             }
-            File fileData = new File(fileDirectory, FILE_NAME+fileName+".csv");
+            File fileData = new File(fileDirectory, FILE_NAME+fileName+".txt");
             FileWriter writer = new FileWriter(fileData, true);
             writer.append(line.concat("\n"));
             writer.flush();
