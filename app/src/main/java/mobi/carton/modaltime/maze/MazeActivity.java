@@ -78,6 +78,7 @@ public class MazeActivity extends CartonActivity
         if (mMazeArray[newPosition] == MazeAdapter.STATE_END) {
             if (checkMazeEnd()) {
                 mChronometer.stop();
+                LogSaved.LogWithHeader(getApplicationContext(), "finish Maze in : " + String.format(Locale.ENGLISH, "%05.2f", mChronometer.getCount()));
                 if (mTrialTiming == 0) {
                     mTrialTiming = mChronometer.getCount();
                     mTextViewTrial.setText(String.format(Locale.ENGLISH, "%05.2f", mTrialTiming));
