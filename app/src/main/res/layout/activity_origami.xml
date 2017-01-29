@@ -40,16 +40,27 @@
         android:gravity="center"/>
 
 
+    <TextView
+        android:id="@+id/textViewInteraction"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-light"
+        android:layout_marginTop="22dp"
+        android:layout_toRightOf="@id/textView_stepPosition"
+        android:layout_marginLeft="8dp"
+        android:textColor="@android:color/white"/>
+
+
     <View
         android:id="@+id/view_line"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="@android:color/white"
-        android:layout_above="@+id/textViewInteraction"/>
+        android:layout_above="@+id/textViewHelp"/>
 
 
     <TextView
-        android:id="@+id/textViewInteraction"
+        android:id="@+id/textViewHelp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif-light"

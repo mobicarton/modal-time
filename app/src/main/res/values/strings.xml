@@ -45,7 +45,34 @@
     <!-- Origami -->
 
     <string name="contentDescriptionStep">Origami diagram (one step)</string>
+    <string name="origami_finger">FINGER</string>
+    <string name="origami_watch">WATCH</string>
+    <string name="origami_head">HEAD</string>
     <string name="origami_all_interaction">Any kind of interaction you want</string>
+
+    <string name="origami_help_1">Diagonal fold and unfold</string>
+    <string name="origami_help_2">Return to other side, then fold and unfold in middle</string>
+    <string name="origami_help_3">Go back to first side, and fold</string>
+    <string name="origami_help_4">Try to get something similar to this</string>
+    <string name="origami_help_5">Fold one corner on each side (left and right)</string>
+    <string name="origami_help_6">Do the same the other side</string>
+    <string name="origami_help_7">Critic step, fold right to left for 1 layer, return and right to left again with 1 layer</string>
+    <string name="origami_help_8">Fold 1 layer (from left) to center</string>
+    <string name="origami_help_9">Do the same with opposite one (center)</string>
+    <string name="origami_help_10">Make sure, the second one go in</string>
+    <string name="origami_help_11">Return and do the same</string>
+    <string name="origami_help_12">Make sure you can see a little hole</string>
+    <string name="origami_help_13">Open/Fold on layer on each side to make petal</string>
+    <string name="origami_help_14">You should get something similar</string>
+    <string name="origami_help_15">Take another paper and diagonal fold/unfold</string>
+    <string name="origami_help_16">Fold each side to center</string>
+    <string name="origami_help_17">Again, fold each side to center</string>
+    <string name="origami_help_18">And again, a third time, each side to center</string>
+    <string name="origami_help_19">You shoud have something similar to this</string>
+    <string name="origami_help_20">Fold in middle</string>
+    <string name="origami_help_21">Fold in middle from right to left</string>
+    <string name="origami_help_22">You can fold/bend on layer to make the leaf</string>
+    <string name="origami_help_23">put together the petals and the stem</string>
 
 
     <!-- Training -->

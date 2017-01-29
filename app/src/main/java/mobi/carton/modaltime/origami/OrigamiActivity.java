@@ -45,6 +45,8 @@ public class OrigamiActivity extends CartonActivity
     private int mPosition = 0;
 
     private TextView mTextViewInteraction;
+    private TextView mTextViewHelper;
+
 
     private ControlWearApi mControlWearApi;
 
@@ -101,6 +103,8 @@ public class OrigamiActivity extends CartonActivity
         mViewPager.addOnPageChangeListener(this);
         mViewPager.setOnScrollListener(this);
 
+        mTextViewHelper = (TextView) findViewById(R.id.textViewHelp);
+        mTextViewHelper.setText(getString(R.string.origami_help_1));
 
         /*
         Interaction
@@ -125,7 +129,7 @@ public class OrigamiActivity extends CartonActivity
             mViewPager.setPagingEnabled(true);
             mHeadRecognition.setOnHeadGestureListener(null);
             mControlWearApi.setOnControlSwipeListener(null);
-            mTextViewInteraction.setText(getString(R.string.maze_finger));
+            mTextViewInteraction.setText(getString(R.string.origami_finger));
             Pref.setCurrentInteraction(getApplicationContext(), Pref.getOrderFinger(getApplicationContext()));
         }
 
@@ -133,7 +137,7 @@ public class OrigamiActivity extends CartonActivity
             mViewPager.setPagingEnabled(false);
             mHeadRecognition.setOnHeadGestureListener(this);
             mControlWearApi.setOnControlSwipeListener(null);
-            mTextViewInteraction.setText(getString(R.string.maze_head));
+            mTextViewInteraction.setText(getString(R.string.origami_head));
             Pref.setCurrentInteraction(getApplicationContext(), Pref.getOrderHead(getApplicationContext()));
         }
 
@@ -142,7 +146,7 @@ public class OrigamiActivity extends CartonActivity
             mHeadRecognition.setOnHeadGestureListener(null);
             mControlWearApi.setOnControlSwipeListener(this);
             mControlWearApi.startWearApp(ControlWearApi.MODE_PAD);
-            mTextViewInteraction.setText(getString(R.string.maze_watch));
+            mTextViewInteraction.setText(getString(R.string.origami_watch));
             Pref.setCurrentInteraction(getApplicationContext(), Pref.getOrderWatch(getApplicationContext()));
         }
 
@@ -245,6 +249,10 @@ public class OrigamiActivity extends CartonActivity
         if (position < mNbSteps) {
             mTextViewStepPosition.setText(String.format("%d", position+1));
             mImageViewStepPosition.setImageDrawable(null);
+
+            int resourceId = getResources().getIdentifier("origami_help_" + Integer.toString(position+1), "string", getPackageName());
+            mTextViewHelper.setText(getString(resourceId));
+
         } else {
             mTextViewStepPosition.setText("");
             mImageViewStepPosition.setImageResource(R.drawable.ic_action_accept);
