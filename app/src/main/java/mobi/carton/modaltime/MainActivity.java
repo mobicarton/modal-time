@@ -20,7 +20,7 @@ public class MainActivity extends CartonActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        CartonPrefs.setWithoutCarton(getApplicationContext(), true);
+        CartonPrefs.setWithoutCarton(getApplicationContext(), false);
 
         Intent intentExtra = getIntent();
         boolean noConfig = intentExtra.getBooleanExtra(MainActivity.EXTRA_NOCONFIG, false);
