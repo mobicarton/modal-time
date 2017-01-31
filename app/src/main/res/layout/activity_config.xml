@@ -16,7 +16,7 @@
         android:textSize="22sp"
         android:inputType="text"
         android:hint="@string/hintName"
-        android:text="mako"/>
+        android:text=""/>
 
 
     <TextView
@@ -51,7 +51,7 @@
         style="@style/editTextConfigOrder"
         android:id="@+id/editTextHead"
         android:layout_below="@+id/textViewVoice"
-        android:text="3"/>
+        android:text=""/>
 
 
     <TextView
@@ -65,7 +65,7 @@
         style="@style/editTextConfigOrder"
         android:id="@+id/editTextFinger"
         android:layout_below="@+id/textViewHead"
-        android:text="2"/>
+        android:text=""/>
 
 
     <TextView
@@ -79,7 +79,7 @@
         style="@style/editTextConfigOrder"
         android:id="@+id/editTextWatch"
         android:layout_below="@+id/textViewFinger"
-        android:text="1"/>
+        android:text=""/>
 
 
     <Button
