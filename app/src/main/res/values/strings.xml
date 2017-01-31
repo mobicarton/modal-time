@@ -33,7 +33,7 @@
     <!-- Maze -->
 
     <string name="contentDescriptionTime">Timing Icon</string>
-    <string name="textInstructionMaze">Start at 10 and move to 16 by passing through 7, 1, 14</string>
+    <string name="textInstructionMaze">Start at 11 and move to 16 by passing through 1, 8 and 14</string>
 
     <string name="maze_finger">Finger Touch</string>
     <string name="maze_head">Head Gesture</string>
@@ -69,7 +69,7 @@
     <string name="origami_help_17">Again, fold each side to center</string>
     <string name="origami_help_18">And again, a third time, each side to center</string>
     <string name="origami_help_19">You shoud have something similar to this</string>
-    <string name="origami_help_20">Fold in middle</string>
+    <string name="origami_help_20">Return and fold in middle</string>
     <string name="origami_help_21">Fold in middle from right to left</string>
     <string name="origami_help_22">You can fold/bend on layer to make the leaf</string>
     <string name="origami_help_23">put together the petals and the stem</string>

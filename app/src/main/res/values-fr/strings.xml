@@ -32,7 +32,7 @@
     <string name="origami_help_17">À nouveau, pliez de chaque coté vers le centre</string>
     <string name="origami_help_18">Et encore, une dernière fois, des cotés vers le centre</string>
     <string name="origami_help_19">Vous devriez avoir quelques chose de similaire</string>
-    <string name="origami_help_20">Pliez au milieu (faire rejoindre les pointes)</string>
+    <string name="origami_help_20">Retournez et pliez au milieu (faire rejoindre les pointes)</string>
     <string name="origami_help_21">Pliez au centre dans la longueur</string>
     <string name="origami_help_22">Ouvrez, pliez la partie extérieur pour former une feuille</string>
     <string name="origami_help_23">Assemblez la tige et les pétales! Fini!</string>
@@ -42,7 +42,7 @@
     <string name="textErrorValues">Erreur : Certaines valeurs sont invalides, elles doivent être comprise entre 1 et 4 (inclus)</string>
     <string name="textFinger">Geste du doigt</string>
     <string name="textHead">Geste de la tête</string>
-    <string name="textInstructionMaze">Commence à 10, doit passer par 1, 8 et 14 et finir à 16</string>
+    <string name="textInstructionMaze">Commencez à 11, passez par 1, 8 et 14 (n\'importe quelle ordre) et finissez à 16</string>
     <string name="textInteraction">Choisissez un ordre d\'interaction (entre 1 et 4)</string>
     <string name="textVoice">Contrôle Vocal</string>
     <string name="textWatch">Montre Intelligente</string>
